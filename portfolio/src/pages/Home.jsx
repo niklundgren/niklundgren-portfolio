@@ -29,11 +29,7 @@ const Home = () => {
               transform: `perspective(1000px) rotateX(${-imageInteraction.y}deg) rotateY(${imageInteraction.x}deg)`
             }}
           >
-            {/* Placeholder for your fun image - replace with your own */}
-            <div className="image-placeholder">
-              <p>Your Fun Image Here</p>
-              <small>Replace placeholder-image.jpg in /public folder</small>
-            </div>
+            <img src="/rad_ang.png" alt="Nicholas Lundgren" className="hero-image" />
           </div>
         </div>
 
