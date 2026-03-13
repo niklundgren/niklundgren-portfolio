@@ -1,7 +1,11 @@
 .app {
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+}
+
+.app-content {
+  flex: 1;
 }
 
 .page-placeholder {
