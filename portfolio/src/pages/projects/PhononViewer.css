@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+/* ── Widget shell ─────────────────────────────────────────── */
+.pv-widget {
+  --pv-bg: #080c10;
+  --pv-border: #1e2d3d;
+  --pv-accent: #4a9eff;
+  --pv-accent-dim: rgba(74, 158, 255, 0.18);
+  --pv-active-glow: 0 0 10px rgba(74, 158, 255, 0.5);
+  --pv-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  font-family: var(--pv-mono);
+  background: var(--pv-bg);
+  border: 1px solid var(--pv-border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  box-shadow:
+    0 0 0 1px rgba(74, 158, 255, 0.06),
+    0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Header / controls bar ────────────────────────────────── */
+.pv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: #0c1219;
+  border-bottom: 1px solid var(--pv-border);
+}
+
+.pv-header-left,
+.pv-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pv-instrument-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--pv-accent);
+  text-shadow: 0 0 8px rgba(74, 158, 255, 0.4);
+}
+
+.pv-divider {
+  color: #2a3a4a;
+  font-size: 1.2rem;
+  line-height: 1;
+  user-select: none;
+}
+
+.pv-field-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #4a6070;
+  white-space: nowrap;
+}
+
+/* Material dropdown */
+.pv-select-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pv-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pv-select {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--pv-border);
+  border-radius: 3px;
+  color: #cde;
+  font-family: var(--pv-mono);
+  font-size: 0.75rem;
+  padding: 0.3rem 1.8rem 0.3rem 0.6rem;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.pv-select:hover,
+.pv-select:focus {
+  border-color: var(--pv-accent);
+  box-shadow: 0 0 0 2px var(--pv-accent-dim);
+}
+
+.pv-select option {
+  background: #0c1219;
+  color: #cde;
+}
+
+.pv-select-arrow {
+  position: absolute;
+  right: 0.5rem;
+  font-size: 0.6rem;
+  color: #4a6070;
+  pointer-events: none;
+}
+
+/* Mode tabs */
+.pv-mode-tabs {
+  display: flex;
+  gap: 3px;
+}
+
+.pv-mode-btn {
+  width: 2rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 1px solid var(--pv-border);
+  border-radius: 3px;
+  background: transparent;
+  color: #5a7a90;
+  font-family: var(--pv-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  line-height: 1;
+}
+
+.pv-mode-btn:hover {
+  border-color: var(--pv-accent);
+  color: var(--pv-accent);
+  background: var(--pv-accent-dim);
+}
+
+.pv-mode-btn.active {
+  border-color: var(--pv-accent);
+  background: var(--pv-accent-dim);
+  color: var(--pv-accent);
+  box-shadow: var(--pv-active-glow);
+  text-shadow: 0 0 6px rgba(74, 158, 255, 0.6);
+}
+
+/* ── Display panel ────────────────────────────────────────── */
+.pv-display-wrap {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background: #050810;
+  overflow: hidden;
+}
+
+.pv-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% / 1.35);
+  height: calc(100% / 1.35);
+  transform: scale(1.35);
+  transform-origin: top left;
+  border: none;
+}
+
+/* Scanlines overlay */
+.pv-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+  z-index: 2;
+}
+
+/* Vignette overlay */
+.pv-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  z-index: 3;
+}
+
+/* ── Status bar ───────────────────────────────────────────── */
+.pv-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.75rem;
+  background: #0a1018;
+  border-top: 1px solid var(--pv-border);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #4a7090;
+}
+
+.pv-pause-btn {
+  width: 1.6rem;
+  height: 1.4rem;
+  padding: 0;
+  border: 1px solid #1e3a28;
+  border-radius: 3px;
+  background: rgba(93, 187, 106, 0.08);
+  color: #5dbb6a;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pv-pause-btn:hover {
+  background: rgba(93, 187, 106, 0.18);
+  border-color: #5dbb6a;
+}
+
+.pv-pause-btn.paused {
+  border-color: #6a2020;
+  background: rgba(220, 80, 80, 0.08);
+  color: #dc5050;
+}
+
+.pv-pause-btn.paused:hover {
+  background: rgba(220, 80, 80, 0.18);
+  border-color: #dc5050;
+}
+
+.pv-status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #5dbb6a;
+  transition: color 0.2s ease;
+}
+
+.pv-status-item.paused {
+  color: #dc5050;
+}
+
+.pv-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5dbb6a;
+  box-shadow: 0 0 5px #5dbb6a;
+  animation: pv-pulse 2s ease-in-out infinite;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pv-status-item.paused .pv-status-dot {
+  background: #dc5050;
+  box-shadow: 0 0 5px #dc5050;
+  animation: none;
+}
+
+@keyframes pv-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.pv-status-sep {
+  color: #1e2d3d;
+}
+
+.pv-status-dim {
+  color: #2a4050;
+}
