@@ -10,6 +10,14 @@ const projects = [
     description:
       'A tool for visualizing phonon dispersion and properties computed by κALDo, including full non-analytical correction (NAC) support.',
   },
+  {
+    id: 'cad-designs',
+    title: 'CAD Designs',
+    subtitle: '3D models designed for print',
+    tags: ['CAD', '3D Printing'],
+    description:
+      'A collection of 3D-printable designs, viewable interactively in the browser via a zero-dependency WebGL STL renderer.',
+  },
 ];
 
 const Projects = () => {
