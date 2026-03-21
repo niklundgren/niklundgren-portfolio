@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 
 // ── Binary STL parser ─────────────────────────────────────────────────────────
 // Format: 80-byte header | uint32 triangle count | N × (12-byte normal + 3×12-byte verts + 2-byte attr)
@@ -166,14 +166,37 @@ function rotateY(a) {
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export default function StlViewer({ url, className = '' }) {
+export default function StlViewer({
+  url,
+  className = '',
+  startInteractive = false,
+  overlayLabel = 'Click to interact',
+}) {
   const canvasRef = useRef(null);
   const stateRef  = useRef({ rotX: 0.4, rotY: 0.5, zoom: 1, drag: null });
+  const drawRef = useRef(() => {});
+  const interactiveRef = useRef(startInteractive);
+  const overlayId = useId();
+  const [interactive, setInteractive] = useState(startInteractive);
+
+  useEffect(() => {
+    interactiveRef.current = interactive;
+  }, [interactive]);
+
+  useEffect(() => {
+    setInteractive(startInteractive);
+    interactiveRef.current = startInteractive;
+  }, [startInteractive, url]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const gl = canvas.getContext('webgl');
     if (!gl) return;
+    let cancelled = false;
+    let pendingFrame = 0;
+    let posBuf = null;
+    let normBuf = null;
+    let resizeObserver = null;
 
     // compile shaders
     function compile(type, src) {
@@ -210,10 +233,55 @@ export default function StlViewer({ url, className = '' }) {
     const uCamPos   = gl.getUniformLocation(prog, 'uCamPos');
 
     let triCount = 0;
-    let rafId;
 
     gl.enable(gl.DEPTH_TEST);
     gl.clearColor(0.05, 0.07, 0.10, 1);
+
+    const draw = () => {
+      if (cancelled || !triCount) return;
+      const { rotX, rotY, zoom } = stateRef.current;
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      if (!w || !h) return;
+
+      const dpr = window.devicePixelRatio || 1;
+      const dw = Math.floor(w * dpr);
+      const dh = Math.floor(h * dpr);
+      if (canvas.width !== dw || canvas.height !== dh) {
+        canvas.width = dw;
+        canvas.height = dh;
+        gl.viewport(0, 0, dw, dh);
+      }
+
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+      const proj  = perspective(0.7, w / h, 0.1, 100);
+      const view  = translate(0, 0, -3.5 / zoom);
+      const model = multiply(rotateX(rotX), rotateY(rotY));
+      const mvp   = multiply(proj, multiply(view, model));
+
+      gl.uniformMatrix4fv(uMVP, false, mvp);
+      gl.uniformMatrix4fv(uModel, false, model);
+      gl.uniform3f(uLightDir, 0.6, 1.0, 0.8);
+      gl.uniform3f(uCamPos, 0, 0, 3.5 / zoom);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+      gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
+      gl.bindBuffer(gl.ARRAY_BUFFER, normBuf);
+      gl.vertexAttribPointer(aNorm, 3, gl.FLOAT, false, 0, 0);
+
+      gl.drawArrays(gl.TRIANGLES, 0, triCount * 3);
+    };
+
+    const queueDraw = () => {
+      if (cancelled || pendingFrame) return;
+      pendingFrame = requestAnimationFrame(() => {
+        pendingFrame = 0;
+        draw();
+      });
+    };
+
+    drawRef.current = queueDraw;
 
     fetch(url)
       .then((r) => {
@@ -243,66 +311,40 @@ export default function StlViewer({ url, className = '' }) {
           positions[i+2] = (positions[i+2] - cz) * scale;
         }
 
-        const posBuf = gl.createBuffer();
+        posBuf = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
         gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
         gl.enableVertexAttribArray(aPos);
         gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
 
-        const normBuf = gl.createBuffer();
+        normBuf = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, normBuf);
         gl.bufferData(gl.ARRAY_BUFFER, normals, gl.STATIC_DRAW);
         gl.enableVertexAttribArray(aNorm);
         gl.vertexAttribPointer(aNorm, 3, gl.FLOAT, false, 0, 0);
-
-        const render = () => {
-          const { rotX, rotY, zoom } = stateRef.current;
-          const w = canvas.clientWidth, h = canvas.clientHeight;
-          if (!w || !h) {
-            rafId = requestAnimationFrame(render);
-            return;
-          }
-          const dpr = window.devicePixelRatio || 1;
-          const dw = Math.floor(w * dpr);
-          const dh = Math.floor(h * dpr);
-          if (canvas.width !== dw || canvas.height !== dh) {
-            canvas.width = dw;
-            canvas.height = dh;
-            gl.viewport(0, 0, dw, dh);
-          }
-          gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-          const proj  = perspective(0.7, w / h, 0.1, 100);
-          const view  = translate(0, 0, -3.5 / zoom);
-          const model = multiply(rotateX(rotX), rotateY(rotY));
-          const mvp   = multiply(proj, multiply(view, model));
-
-          gl.uniformMatrix4fv(uMVP,   false, mvp);
-          gl.uniformMatrix4fv(uModel, false, model);
-          gl.uniform3f(uLightDir, 0.6, 1.0, 0.8);
-          gl.uniform3f(uCamPos,   0,   0,   3.5 / zoom);
-
-          // re-bind buffers for draw (needed after potential context changes)
-          gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
-          gl.vertexAttribPointer(aPos, 3, gl.FLOAT, false, 0, 0);
-          gl.bindBuffer(gl.ARRAY_BUFFER, normBuf);
-          gl.vertexAttribPointer(aNorm, 3, gl.FLOAT, false, 0, 0);
-
-          gl.drawArrays(gl.TRIANGLES, 0, triCount * 3);
-          rafId = requestAnimationFrame(render);
-        };
-        render();
+        queueDraw();
       })
       .catch((err) => {
         console.error('STL viewer failed to initialize:', err);
       });
 
+    if ('ResizeObserver' in window) {
+      resizeObserver = new ResizeObserver(() => {
+        queueDraw();
+      });
+      resizeObserver.observe(canvas);
+    } else {
+      window.addEventListener('resize', queueDraw);
+    }
+
     // ── Pointer controls ──────────────────────────────────────────────────────
     const onDown = (e) => {
+      if (!interactiveRef.current) return;
       const pt = e.touches ? e.touches[0] : e;
       stateRef.current.drag = { x: pt.clientX, y: pt.clientY };
     };
     const onMove = (e) => {
+      if (!interactiveRef.current) return;
       const s = stateRef.current;
       if (!s.drag) return;
       const pt = e.touches ? e.touches[0] : e;
@@ -311,11 +353,14 @@ export default function StlViewer({ url, className = '' }) {
       s.rotY += dx * 0.01;
       s.rotX += dy * 0.01;
       s.drag = { x: pt.clientX, y: pt.clientY };
+      queueDraw();
     };
     const onUp   = () => { stateRef.current.drag = null; };
     const onWheel = (e) => {
+      if (!interactiveRef.current) return;
       e.preventDefault();
       stateRef.current.zoom = Math.max(0.2, Math.min(5, stateRef.current.zoom * (1 - e.deltaY * 0.001)));
+      queueDraw();
     };
 
     canvas.addEventListener('mousedown',  onDown);
@@ -328,7 +373,18 @@ export default function StlViewer({ url, className = '' }) {
     canvas.addEventListener('wheel',      onWheel, { passive: false });
 
     return () => {
-      cancelAnimationFrame(rafId);
+      cancelled = true;
+      cancelAnimationFrame(pendingFrame);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      } else {
+        window.removeEventListener('resize', queueDraw);
+      }
+      if (posBuf) gl.deleteBuffer(posBuf);
+      if (normBuf) gl.deleteBuffer(normBuf);
+      gl.deleteProgram(prog);
+      gl.deleteShader(vertShader);
+      gl.deleteShader(fragShader);
       canvas.removeEventListener('mousedown',  onDown);
       canvas.removeEventListener('mousemove',  onMove);
       canvas.removeEventListener('mouseup',    onUp);
@@ -340,5 +396,27 @@ export default function StlViewer({ url, className = '' }) {
     };
   }, [url]);
 
-  return <canvas ref={canvasRef} className={`stl-canvas ${className}`} />;
+  useEffect(() => {
+    drawRef.current();
+  }, [interactive]);
+
+  return (
+    <div className="stl-viewer-frame">
+      <canvas
+        ref={canvasRef}
+        className={`stl-canvas ${interactive ? 'stl-canvas-interactive' : ''} ${className}`.trim()}
+        aria-describedby={!interactive ? overlayId : undefined}
+      />
+      {!interactive && (
+        <button
+          id={overlayId}
+          type="button"
+          className="stl-viewer-activation"
+          onClick={() => setInteractive(true)}
+        >
+          <span>{overlayLabel}</span>
+        </button>
+      )}
+    </div>
+  );
 }

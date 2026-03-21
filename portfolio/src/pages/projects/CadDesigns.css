@@ -1,4 +1,35 @@
-.cad-viewer-widget {
+.cad-storyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.cad-story-chunk {
+  --cad-bg: #080c10;
+  --cad-border: #1e2d3d;
+  --cad-accent: #4a9eff;
+  --cad-accent-dim: rgba(74, 158, 255, 0.18);
+  --cad-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.cad-story-chunk-reversed {
+  grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+}
+
+.cad-story-chunk-reversed .cad-story-viewer {
+  order: 2;
+}
+
+.cad-story-chunk-reversed .cad-story-copy {
+  order: 1;
+}
+
+.cad-viewer-shell {
   --cad-bg: #080c10;
   --cad-border: #1e2d3d;
   --cad-accent: #4a9eff;
@@ -10,10 +41,38 @@
   border: 1px solid var(--cad-border);
   border-radius: 6px;
   overflow: hidden;
-  margin-bottom: 3rem;
   box-shadow:
     0 0 0 1px rgba(74, 158, 255, 0.06),
     0 24px 48px rgba(0, 0, 0, 0.5);
+}
+
+.cad-story-copy {
+  padding: 0.5rem 0;
+}
+
+.cad-story-eyebrow {
+  margin: 0 0 0.5rem;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7db8ff;
+}
+
+.cad-story-copy h2 {
+  margin: 0 0 0.85rem;
+  font-size: 1.8rem;
+  color: #f3f7fb;
+}
+
+.cad-story-summary {
+  color: #c8d6e4;
+  font-size: 1.05rem;
+}
+
+.cad-story-copy p {
+  line-height: 1.8;
+  color: #a7b5c4;
 }
 
 .cad-viewer-header {
@@ -41,47 +100,25 @@
   user-select: none;
 }
 
-.cad-model-picker {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: #5a7a90;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-}
-
-.cad-model-select {
-  border-color: var(--cad-accent);
-  border: 1px solid var(--cad-border);
-  border-radius: 3px;
-  background: var(--cad-accent-dim);
+.cad-model-name {
   color: var(--cad-accent);
-  font-family: var(--cad-mono);
   font-size: 0.75rem;
-  padding: 0.28rem 1.9rem 0.28rem 0.55rem;
-  box-shadow: 0 0 10px rgba(74, 158, 255, 0.25);
-  outline: none;
-  cursor: pointer;
-}
-
-.cad-model-select:focus {
-  border-color: #7db8ff;
-  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
-}
-
-.cad-model-select option {
-  background: #0c1219;
-  color: #d3e8ff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .stl-canvas {
   display: block;
   width: 100%;
   height: 480px;
+  cursor: default;
+}
+
+.stl-canvas.stl-canvas-interactive {
   cursor: grab;
 }
 
-.stl-canvas:active {
+.stl-canvas.stl-canvas-interactive:active {
   cursor: grabbing;
 }
 
@@ -103,4 +140,72 @@
 
 .cad-status-sep {
   color: #1e2d3d;
+}
+
+.stl-viewer-frame {
+  position: relative;
+}
+
+.stl-viewer-activation {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(8, 12, 16, 0.18), rgba(8, 12, 16, 0.5)),
+    radial-gradient(circle at center, rgba(74, 158, 255, 0.14), transparent 55%);
+  border: 0;
+  width: 100%;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  color: #d7ebff;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.76rem;
+  cursor: pointer;
+}
+
+.stl-viewer-activation span {
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgba(125, 184, 255, 0.4);
+  background: rgba(12, 18, 25, 0.72);
+  box-shadow: 0 0 18px rgba(74, 158, 255, 0.18);
+}
+
+.stl-viewer-activation:focus-visible {
+  outline: 2px solid #7db8ff;
+  outline-offset: -2px;
+}
+
+@media (max-width: 860px) {
+  .cad-story-chunk,
+  .cad-story-chunk-reversed {
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  .cad-story-chunk-reversed .cad-story-viewer,
+  .cad-story-chunk-reversed .cad-story-copy {
+    order: initial;
+  }
+
+  .stl-canvas {
+    height: 380px;
+  }
+}
+
+@media (max-width: 560px) {
+  .stl-canvas {
+    height: 300px;
+  }
+
+  .cad-viewer-header,
+  .cad-status-bar {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .cad-story-copy h2 {
+    font-size: 1.5rem;
+  }
 }
