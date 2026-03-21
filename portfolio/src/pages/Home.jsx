@@ -1,37 +1,32 @@
-import { useState } from 'react';
 import './Home.css';
+import ImageCarousel from '../components/ImageCarousel';
+
+const carouselImages = [
+  {
+    src: '/rad_ang.png',
+    label: 'Radial Angular Distribution',
+    caption: 'Angular-resolved radial distribution of phonon modes in semiconductor lattices',
+    alt: 'Radial angular distribution plot',
+  },
+  {
+    src: '/xls-dispersion.png',
+    label: 'Equilibrium Phonon Dispersion',
+    caption: 'Phonon dispersion relations computed via equilibrium lattice simulations',
+    alt: 'Phonon dispersion curves',
+  },
+  {
+    src: '/xls-rmse.png',
+    label: 'Silicon Phases · Force RMSE',
+    caption: 'Force RMSE vs. DFT reference across silicon phase configurations',
+    alt: 'Silicon phases force RMSE plot',
+  },
+];
 
 const Home = () => {
-  const [imageInteraction, setImageInteraction] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-    setImageInteraction({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setImageInteraction({ x: 0, y: 0 });
-  };
-
   return (
     <div className="home">
       <div className="hero-section">
-        <div
-          className="image-container"
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div
-            className="interactive-image"
-            style={{
-              transform: `perspective(1000px) rotateX(${-imageInteraction.y}deg) rotateY(${imageInteraction.x}deg)`
-            }}
-          >
-            <img src="/rad_ang.png" alt="Nicholas Lundgren" className="hero-image" />
-          </div>
-        </div>
+        <ImageCarousel images={carouselImages} />
 
         <div className="hero-content">
           <h1 className="hero-title">Nicholas W. Lundgren</h1>
