@@ -33,12 +33,21 @@ const Home = () => {
 
         <div className="hero-content">
           <p className="hero-eyebrow">Chemical Physicist · PhD Candidate</p>
-          <h1 className="hero-title">Nicholas<br />W. Lundgren</h1>
-          <p className="hero-description">
-            Modeling thermal transport in semiconductors and developing cutting-edge
-            heat transport software. Passionate about machine learning, data visualization,
-            and high-performance computing.
-          </p>
+          <div className="hero-summary">
+            <div className="hero-copy">
+              <h1 className="hero-title">Nicholas<br />W. Lundgren</h1>
+              <p className="hero-description">
+                Modeling thermal transport in semiconductors and developing cutting-edge
+                heat transport software. Passionate about machine learning, data visualization,
+                and high-performance computing.
+              </p>
+            </div>
+            <img
+              className="hero-headshot"
+              src="/headshot.svg"
+              alt="Headshot of Nicholas W. Lundgren"
+            />
+          </div>
           <div className="hero-highlights">
             <div className="highlight-item">
               <strong>Expected PhD</strong>
