@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ImageCarousel.css';
 
 // Resting positions (left %) for the 3 slots
-// Each slot is 82% wide → 9% peek on each side
-// prev: right edge = -73 + 82 = 9% visible
-// curr: occupies 9%–91%
-// next: left edge = 91%, shows 9%
-const REST = { prev: -73, curr: 9, next: 91 };
+// curr: occupies 9%–91% (center of viewport)
+// prev/next: scaled 0.78, so visual width = 82*0.78 = 63.96%
+// prev visual right edge lands at 50% (center of curr): left = 50 - 72.98 ≈ -23
+// next visual left edge lands at 50%: left = 50 - 9.02 ≈ 41
+const REST = { prev: -23, curr: 9, next: 41 };
 
 const ImageCarousel = ({ images }) => {
   const N = images.length;
@@ -17,6 +17,39 @@ const ImageCarousel = ({ images }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [noTransition, setNoTransition] = useState(false);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [imageRatios, setImageRatios] = useState(() => images.map(() => null));
+
+  useEffect(() => {
+    let cancelled = false;
+
+    setImageRatios(images.map(() => null));
+
+    images.forEach((image, index) => {
+      const img = new Image();
+
+      const applyRatio = () => {
+        if (cancelled || !img.naturalWidth || !img.naturalHeight) return;
+        const ratio = img.naturalWidth / img.naturalHeight;
+        setImageRatios((prev) => {
+          if (prev[index] === ratio) return prev;
+          const next = [...prev];
+          next[index] = ratio;
+          return next;
+        });
+      };
+
+      img.onload = applyRatio;
+      img.src = image.src;
+
+      if (img.complete) {
+        applyRatio();
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [images]);
 
   const navigate = (dir) => {
     if (isTransitioning) return;
@@ -27,10 +60,10 @@ const ImageCarousel = ({ images }) => {
     setTilt({ x: 0, y: 0 });
 
     if (dir === 'next') {
-      setPositions({ prev: -73, curr: -73, next: 9 });
+      setPositions({ prev: -93, curr: -93, next: 9 });
       setSlotVisual({ prev: 'side', curr: 'side', next: 'center' });
     } else {
-      setPositions({ prev: 9, curr: 91, next: 91 });
+      setPositions({ prev: 9, curr: 81, next: 81 });
       setSlotVisual({ prev: 'center', curr: 'side', next: 'side' });
     }
 
@@ -65,13 +98,20 @@ const ImageCarousel = ({ images }) => {
   const current = images[currentIndex];
   const figNum = String(currentIndex + 1).padStart(2, '0');
   const total = String(N).padStart(2, '0');
+  const fallbackRatio = imageRatios[currentIndex] ?? 4 / 3;
+  const smallestRatio = imageRatios.reduce((min, ratio) => {
+    if (!ratio) return min;
+    return min === null ? ratio : Math.min(min, ratio);
+  }, null);
+  const viewportAspectRatio = (smallestRatio ?? fallbackRatio) / 0.82;
 
-  const slotStyle = (pos, withTilt = false) => ({
+  const slotStyle = (pos, imageIndex, withTilt = false) => ({
     left: `${pos}%`,
+    '--slide-aspect-ratio': imageRatios[imageIndex] ?? fallbackRatio,
+    '--interactive-transform': withTilt
+      ? `perspective(1000px) rotateX(${-tilt.y}deg) rotateY(${tilt.x}deg)`
+      : 'none',
     ...(noTransition && { transition: 'none' }),
-    ...(withTilt && {
-      transform: `perspective(1000px) rotateX(${-tilt.y}deg) rotateY(${tilt.x}deg)`,
-    }),
   });
 
   return (
@@ -85,22 +125,23 @@ const ImageCarousel = ({ images }) => {
 
       <div
         className="carousel-viewport"
+        style={{ aspectRatio: viewportAspectRatio }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
         {/* Prev slot */}
-        <div className={`slide-slot ${slotVisual.prev}`} style={slotStyle(positions.prev)}>
+        <div className={`slide-slot ${slotVisual.prev}`} style={slotStyle(positions.prev, prevIndex)}>
           <img src={images[prevIndex].src} alt={images[prevIndex].alt} className="carousel-img" draggable={false} />
         </div>
 
         {/* Curr slot — carries tilt transform + scan + reticles */}
-        <div className={`slide-slot ${slotVisual.curr}`} style={slotStyle(positions.curr, true)}>
+        <div className={`slide-slot ${slotVisual.curr}`} style={slotStyle(positions.curr, slotCenter, true)}>
           <img src={images[slotCenter].src} alt={images[slotCenter].alt} className="carousel-img" draggable={false} />
           <div className="scan-sweep" />
         </div>
 
         {/* Next slot */}
-        <div className={`slide-slot ${slotVisual.next}`} style={slotStyle(positions.next)}>
+        <div className={`slide-slot ${slotVisual.next}`} style={slotStyle(positions.next, nextIndex)}>
           <img src={images[nextIndex].src} alt={images[nextIndex].alt} className="carousel-img" draggable={false} />
         </div>
 
