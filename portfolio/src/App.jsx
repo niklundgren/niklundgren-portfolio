@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Home from './pages/Home'
 import Projects from './pages/Projects'
+import Skills from './pages/Skills'
 import PhononViewer from './pages/projects/PhononViewer'
 import CadDesigns from './pages/projects/CadDesigns'
 import './App.css'
@@ -16,8 +17,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/phonon-viewer" element={<PhononViewer />} />
         <Route path="/projects/cad-designs" element={<CadDesigns />} />
-        <Route path="/skills" element={<div className="page-placeholder">Skills page coming soon...</div>} />
-        <Route path="/contact" element={<div className="page-placeholder">Contact page coming soon...</div>} />
+        <Route path="/skills" element={<Skills />} />
       </Routes>
       </div>
     </div>

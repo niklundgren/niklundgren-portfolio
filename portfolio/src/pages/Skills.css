@@ -1,0 +1,189 @@
+.skills-page {
+  min-height: 100vh;
+  padding: 4.5rem 3.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Page header ──────────────────────────── */
+
+.skills-header {
+  margin-bottom: 4rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.skills-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.85rem;
+}
+
+.skills-title {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+}
+
+/* ── Sections ─────────────────────────────── */
+
+.skills-section {
+  margin-bottom: 5rem;
+}
+
+.skills-section-intro {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.85;
+  max-width: 72ch;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Section divider ──────────────────────── */
+
+.skills-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.skills-divider-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  white-space: nowrap;
+}
+
+.skills-divider-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border-hi) 0%, transparent 100%);
+}
+
+/* ── Software logo strip ──────────────────── */
+
+.software-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2.5rem 3.5rem;
+  padding: 0.5rem 0;
+}
+
+.software-logo-link {
+  display: flex;
+  align-items: center;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.software-logo-link:hover {
+  opacity: 1;
+}
+
+.software-logo {
+  height: 55px;
+  width: auto;
+  display: block;
+}
+
+/* ── Essay ────────────────────────────────── */
+
+.essay-wrap {
+  max-width: 720px;
+}
+
+.essay-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.essay-title {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.essay-subtitle {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+/* ── Essay body prose ─────────────────────── */
+
+.essay-body {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+
+.essay-section {
+  margin-bottom: 2rem;
+}
+
+.essay-heading {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.essay-body p {
+  margin-bottom: 1.2em;
+  color: var(--text-muted);
+}
+
+/* ── Pull quote ───────────────────────────── */
+
+.essay-pullquote {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.65;
+  margin: 2.5rem 0 2.5rem -2rem;
+  padding-left: 1.75rem;
+  border-left: 2px solid var(--amber);
+  max-width: 56ch;
+}
+
+/* ── Responsive ───────────────────────────── */
+
+@media (max-width: 860px) {
+  .skills-page {
+    padding: 3rem 1.75rem;
+  }
+
+  .essay-pullquote {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .skills-title {
+    font-size: 2.2rem;
+  }
+}

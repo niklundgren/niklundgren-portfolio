@@ -1,17 +1,44 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 :root {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.6;
-  font-weight: 400;
+  /* ── Palette ─────────────────────────────── */
+  --bg:          #0c0b09;
+  --surface:     #131210;
+  --surface-2:   #1c1a17;
+  --border:      #2a2724;
+  --border-hi:   #3c3830;
 
+  --amber:       #c8893a;
+  --amber-faint: rgba(200, 137, 58, 0.07);
+  --amber-dim:   rgba(200, 137, 58, 0.18);
+  --amber-glow:  rgba(200, 137, 58, 0.35);
+
+  --teal:        #4ab5aa;
+  --teal-dim:    rgba(74, 181, 170, 0.15);
+
+  --text:        #ddd9d2;
+  --text-muted:  #7a7570;
+  --text-faint:  #44403c;
+
+  /* ── Typography ──────────────────────────── */
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --mono:  'JetBrains Mono', 'Courier New', monospace;
+
+  /* ── Applied ─────────────────────────────── */
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0a0a0a;
+  color: var(--text);
+  background-color: var(--bg);
+
+  font-family: var(--mono);
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 400;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,8 +50,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-  background-attachment: fixed;
+  background-color: var(--bg);
 }
 
 #root {
@@ -32,57 +58,46 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--serif);
   line-height: 1.2;
-  font-weight: 600;
+  font-weight: 400;
+  color: var(--text);
 }
 
 a {
-  color: #4a9eff;
+  color: var(--amber);
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: #667eea;
+  color: var(--teal);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  color: #ffffff;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  padding: 0.5em 1em;
+  font-size: 0.8em;
+  font-weight: 400;
+  font-family: var(--mono);
+  background-color: var(--surface);
+  color: var(--text);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 button:hover {
-  background-color: #2a2a2a;
-  border-color: #4a9eff;
+  background-color: var(--surface-2);
+  border-color: var(--amber);
 }
 
-button:focus,
 button:focus-visible {
-  outline: 2px solid #4a9eff;
+  outline: 1px solid var(--amber);
   outline-offset: 2px;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #4a9eff;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #667eea;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--amber); }

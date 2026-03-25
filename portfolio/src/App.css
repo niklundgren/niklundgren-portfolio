@@ -6,15 +6,18 @@
 
 .app-content {
   flex: 1;
+  min-width: 0;
 }
 
 .page-placeholder {
-  min-height: calc(100vh - 80px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
-  color: #b0b0b0;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--text-faint);
   padding: 2rem;
   text-align: center;
 }
