@@ -41,7 +41,7 @@
 
 .project-subtitle {
   font-family: var(--mono);
-  font-size: 0.88rem;
+  font-size: 1.1rem;
   letter-spacing: 0.04em;
   color: var(--text-muted);
   margin-bottom: 1.25rem;
@@ -97,7 +97,7 @@
 
 .project-section p {
   font-family: var(--mono);
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   line-height: 1.9;
   color: var(--text-muted);
   margin-bottom: 0.75rem;
@@ -120,7 +120,7 @@
 
 .project-section li {
   font-family: var(--mono);
-  font-size: 0.9rem;
+  font-size: 1.15rem;
   color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
