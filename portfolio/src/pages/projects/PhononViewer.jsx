@@ -10,6 +10,30 @@ const MATERIALS = {
     formula: 'Si',
     modes: [0, 1, 2, 3, 4, 5],
   },
+  silicene_4x4: {
+    label: 'Silicene',
+    detail: '4×4 supercell',
+    formula: 'Si',
+    modes: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  },
+  bilayer_silicene_4x4: {
+    label: 'Bilayer Silicene',
+    detail: '4×4 supercell',
+    formula: 'Si₂',
+    modes: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+  },
+  silicon_3x3x3: {
+    label: 'Silicon (Diamond)',
+    detail: '3×3×3 supercell',
+    formula: 'Si',
+    modes: [2, 3, 4, 5],
+  },
+  mgo_3x3x3: {
+    label: 'MgO',
+    detail: '3×3×3 supercell',
+    formula: 'MgO',
+    modes: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+  },
 };
 
 const PhononViewerWidget = () => {

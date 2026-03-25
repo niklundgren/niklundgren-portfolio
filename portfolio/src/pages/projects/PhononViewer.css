@@ -109,6 +109,7 @@
 /* Mode tabs */
 .pv-mode-tabs {
   display: flex;
+  flex-wrap: wrap;
   gap: 3px;
 }
 
