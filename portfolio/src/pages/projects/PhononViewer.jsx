@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './PhononViewer.css';
 import './ProjectPage.css';
@@ -39,9 +39,6 @@ const MATERIALS = {
 const PhononViewerWidget = () => {
   const [material, setMaterial] = useState('silicene_25x25');
   const [mode, setMode] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const iframeRef = useRef(null);
-  const observerRef = useRef(null);
 
   const current = MATERIALS[material];
   const src = `/phonon-viewer/${material}/mode_${mode}.html`;
@@ -49,34 +46,10 @@ const PhononViewerWidget = () => {
   const changeMaterial = (val) => {
     setMaterial(val);
     setMode(0);
-    setPaused(false);
   };
 
   const changeMode = (m) => {
     setMode(m);
-    setPaused(false);
-  };
-
-  // After iframe loads, watch the iframe's own playbtn for text changes
-  // so both buttons stay in sync no matter which one is clicked.
-  const handleIframeLoad = useCallback(() => {
-    observerRef.current?.disconnect();
-    try {
-      const playBtn = iframeRef.current?.contentWindow?.document.getElementById('playbtn');
-      if (!playBtn) return;
-      observerRef.current = new MutationObserver(() => {
-        // "Pause" text means it's currently playing; "Play" means paused
-        setPaused(playBtn.textContent.trim() === 'Play');
-      });
-      observerRef.current.observe(playBtn, { childList: true, subtree: true, characterData: true });
-    } catch (_) {}
-  }, []);
-
-  const handlePauseToggle = () => {
-    try {
-      iframeRef.current?.contentWindow?.togglePlay();
-    } catch (_) {}
-    // State update comes from the MutationObserver, not set here
   };
 
   return (
@@ -123,35 +96,12 @@ const PhononViewerWidget = () => {
       <div className="pv-display-wrap">
         <iframe
           key={src}
-          ref={iframeRef}
           src={src}
           title={`${current.label} phonon mode ${mode}`}
           className="pv-iframe"
-          onLoad={handleIframeLoad}
         />
         <div className="pv-scanlines" aria-hidden="true" />
         <div className="pv-vignette" aria-hidden="true" />
-      </div>
-
-      <div className="pv-status-bar">
-        <button
-          className={`pv-pause-btn${paused ? ' paused' : ''}`}
-          onClick={handlePauseToggle}
-          title={paused ? 'Resume' : 'Pause'}
-        >
-          {paused ? '⏸' : '▶'}
-        </button>
-
-        <span className={`pv-status-item${paused ? ' paused' : ''}`}>
-          <span className="pv-status-dot" />
-          {paused ? 'PAUSED' : 'LIVE'}
-        </span>
-        <span className="pv-status-sep">·</span>
-        <span>{current.formula} / {current.detail}</span>
-        <span className="pv-status-sep">·</span>
-        <span>MODE {String(mode).padStart(2, '0')}</span>
-        <span className="pv-status-sep">·</span>
-        <span className="pv-status-dim">κALDo lattice dynamics</span>
       </div>
     </div>
   );

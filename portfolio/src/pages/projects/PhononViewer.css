@@ -147,19 +147,15 @@
 .pv-display-wrap {
   position: relative;
   width: 100%;
-  height: 520px;
+  height: 680px;
   background: #0a0908;
   overflow: hidden;
 }
 
 .pv-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(100% / 1.35);
-  height: calc(100% / 1.35);
-  transform: scale(1.35);
-  transform-origin: top left;
+  display: block;
+  width: 100%;
+  height: 100%;
   border: none;
 }
 
@@ -191,90 +187,14 @@
   z-index: 3;
 }
 
-/* ── Status bar ───────────────────────────────────────────── */
-.pv-status-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.35rem 0.75rem;
-  background: #100e0b;
-  border-top: 1px solid var(--pv-border);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: #5a5048;
+@media (max-width: 900px) {
+  .pv-display-wrap {
+    height: 560px;
+  }
 }
 
-.pv-pause-btn {
-  width: 1.6rem;
-  height: 1.4rem;
-  padding: 0;
-  border: 1px solid #1e3a28;
-  border-radius: 3px;
-  background: rgba(93, 187, 106, 0.08);
-  color: #5dbb6a;
-  font-size: 0.65rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.pv-pause-btn:hover {
-  background: rgba(93, 187, 106, 0.18);
-  border-color: #5dbb6a;
-}
-
-.pv-pause-btn.paused {
-  border-color: #6a2020;
-  background: rgba(220, 80, 80, 0.08);
-  color: #dc5050;
-}
-
-.pv-pause-btn.paused:hover {
-  background: rgba(220, 80, 80, 0.18);
-  border-color: #dc5050;
-}
-
-.pv-status-item {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  color: #5dbb6a;
-  transition: color 0.2s ease;
-}
-
-.pv-status-item.paused {
-  color: #dc5050;
-}
-
-.pv-status-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #5dbb6a;
-  box-shadow: 0 0 5px #5dbb6a;
-  animation: pv-pulse 2s ease-in-out infinite;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
-}
-
-.pv-status-item.paused .pv-status-dot {
-  background: #dc5050;
-  box-shadow: 0 0 5px #dc5050;
-  animation: none;
-}
-
-@keyframes pv-pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
-}
-
-.pv-status-sep {
-  color: #2e2420;
-}
-
-.pv-status-dim {
-  color: #3a3530;
+@media (max-width: 640px) {
+  .pv-display-wrap {
+    height: 420px;
+  }
 }
