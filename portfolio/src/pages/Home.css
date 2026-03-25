@@ -1,79 +1,156 @@
 .home {
-  min-height: calc(100vh - 80px);
+  min-height: 100vh;
+  display: flex;
 }
+
+/* ── Two-column hero grid ─────────────────── */
 
 .hero-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  width: 100%;
+  min-height: 100vh;
 }
 
+/* ── Left panel: carousel ─────────────────── */
+
+.hero-visual {
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2.5rem;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle coordinate grid texture */
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Warm radial glow at center */
+.hero-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(200, 137, 58, 0.04) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ── Right panel: content ─────────────────── */
 
 .hero-content {
-  text-align: center;
-  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5rem 3.5rem;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 1.75rem;
 }
 
 .hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-subtitle {
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-  color: #b0b0b0;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.0;
+  color: var(--text);
+  margin-bottom: 2rem;
+  letter-spacing: -0.01em;
 }
 
 .hero-description {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  max-width: 800px;
-  margin: 0 auto 2rem;
-  color: #d0d0d0;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.95;
+  color: var(--text-muted);
+  margin-bottom: 2.75rem;
+  max-width: 36ch;
 }
 
+/* ── Stat table ───────────────────────────── */
+
 .hero-highlights {
-  display: flex;
-  justify-content: center;
-  gap: 3rem;
-  flex-wrap: wrap;
-  margin-top: 3rem;
+  border-top: 1px solid var(--border);
 }
 
 .highlight-item {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
 }
 
 .highlight-item strong {
-  color: #4a9eff;
-  font-size: 1.1rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 400;
+  flex-shrink: 0;
 }
 
 .highlight-item span {
-  color: #d0d0d0;
-  font-size: 1rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--teal);
+  text-align: right;
 }
 
-@media (max-width: 768px) {
+/* ── Responsive ───────────────────────────── */
+
+@media (max-width: 1000px) {
+  .hero-section {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-content {
+    padding: 4rem 2.5rem;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    min-height: unset;
+  }
+
+  .hero-visual {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 2.5rem 1.75rem;
+    min-height: 50vw;
+  }
+
+  .hero-content {
+    padding: 2.5rem 1.75rem;
+  }
+
   .hero-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
   }
 
-  .hero-subtitle {
-    font-size: 1.2rem;
-  }
-
-  .hero-highlights {
-    gap: 1.5rem;
+  .hero-description {
+    max-width: 100%;
   }
 }

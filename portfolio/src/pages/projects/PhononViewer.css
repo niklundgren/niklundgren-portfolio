@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
 /* ── Widget shell ─────────────────────────────────────────── */
 .pv-widget {
-  --pv-bg: #080c10;
-  --pv-border: #1e2d3d;
-  --pv-accent: #4a9eff;
-  --pv-accent-dim: rgba(74, 158, 255, 0.18);
-  --pv-active-glow: 0 0 10px rgba(74, 158, 255, 0.5);
-  --pv-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --pv-bg:         #0e0c09;
+  --pv-border:     #2d2520;
+  --pv-accent:     #c8893a;
+  --pv-accent-dim: rgba(200, 137, 58, 0.15);
+  --pv-active-glow: 0 0 10px rgba(200, 137, 58, 0.4);
+  --pv-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   font-family: var(--pv-mono);
   background: var(--pv-bg);
@@ -16,7 +14,7 @@
   overflow: hidden;
   margin-bottom: 3rem;
   box-shadow:
-    0 0 0 1px rgba(74, 158, 255, 0.06),
+    0 0 0 1px rgba(200, 137, 58, 0.06),
     0 24px 48px rgba(0, 0, 0, 0.5);
 }
 
@@ -28,7 +26,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 0.75rem 1.25rem;
-  background: #0c1219;
+  background: #130f0c;
   border-bottom: 1px solid var(--pv-border);
 }
 
@@ -41,14 +39,14 @@
 
 .pv-instrument-label {
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--pv-accent);
-  text-shadow: 0 0 8px rgba(74, 158, 255, 0.4);
+  text-shadow: 0 0 8px rgba(200, 137, 58, 0.35);
 }
 
 .pv-divider {
-  color: #2a3a4a;
+  color: #2e2420;
   font-size: 1.2rem;
   line-height: 1;
   user-select: none;
@@ -56,9 +54,9 @@
 
 .pv-field-label {
   font-size: 0.6rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.14em;
-  color: #4a6070;
+  color: #5a5048;
   white-space: nowrap;
 }
 
@@ -80,7 +78,7 @@
   background: transparent;
   border: 1px solid var(--pv-border);
   border-radius: 3px;
-  color: #cde;
+  color: var(--text);
   font-family: var(--pv-mono);
   font-size: 0.75rem;
   padding: 0.3rem 1.8rem 0.3rem 0.6rem;
@@ -96,15 +94,15 @@
 }
 
 .pv-select option {
-  background: #0c1219;
-  color: #cde;
+  background: #130f0c;
+  color: var(--text);
 }
 
 .pv-select-arrow {
   position: absolute;
   right: 0.5rem;
   font-size: 0.6rem;
-  color: #4a6070;
+  color: #5a5048;
   pointer-events: none;
 }
 
@@ -121,7 +119,7 @@
   border: 1px solid var(--pv-border);
   border-radius: 3px;
   background: transparent;
-  color: #5a7a90;
+  color: #5a5048;
   font-family: var(--pv-mono);
   font-size: 0.75rem;
   font-weight: 500;
@@ -141,7 +139,7 @@
   background: var(--pv-accent-dim);
   color: var(--pv-accent);
   box-shadow: var(--pv-active-glow);
-  text-shadow: 0 0 6px rgba(74, 158, 255, 0.6);
+  text-shadow: 0 0 6px rgba(200, 137, 58, 0.5);
 }
 
 /* ── Display panel ────────────────────────────────────────── */
@@ -149,7 +147,7 @@
   position: relative;
   width: 100%;
   height: 520px;
-  background: #050810;
+  background: #0a0908;
   overflow: hidden;
 }
 
@@ -198,11 +196,11 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.35rem 0.75rem;
-  background: #0a1018;
+  background: #100e0b;
   border-top: 1px solid var(--pv-border);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: #4a7090;
+  color: #5a5048;
 }
 
 .pv-pause-btn {
@@ -273,9 +271,9 @@
 }
 
 .pv-status-sep {
-  color: #1e2d3d;
+  color: #2e2420;
 }
 
 .pv-status-dim {
-  color: #2a4050;
+  color: #3a3530;
 }

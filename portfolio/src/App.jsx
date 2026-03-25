@@ -16,8 +16,6 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/phonon-viewer" element={<PhononViewer />} />
         <Route path="/projects/cad-designs" element={<CadDesigns />} />
-        <Route path="/skills" element={<div className="page-placeholder">Skills page coming soon...</div>} />
-        <Route path="/contact" element={<div className="page-placeholder">Contact page coming soon...</div>} />
       </Routes>
       </div>
     </div>

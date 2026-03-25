@@ -23,7 +23,10 @@ const projects = [
 const Projects = () => {
   return (
     <div className="projects-page">
-      <h1 className="projects-title">Projects</h1>
+      <header className="projects-header">
+        <p className="projects-eyebrow">Selected Work</p>
+        <h1 className="projects-title">Projects</h1>
+      </header>
       <div className="projects-list">
         {projects.map((project) => (
           <Link
@@ -31,15 +34,18 @@ const Projects = () => {
             to={`/projects/${project.id}`}
             className="project-card"
           >
-            <div className="project-card-header">
-              <h2 className="project-card-title">{project.title}</h2>
-              <span className="project-card-subtitle">{project.subtitle}</span>
-            </div>
-            <p className="project-card-description">{project.description}</p>
-            <div className="project-tags">
-              {project.tags.map((tag) => (
-                <span key={tag} className="project-tag">{tag}</span>
-              ))}
+            <div className="project-card-index" aria-hidden="true" />
+            <div className="project-card-body">
+              <div className="project-card-header">
+                <h2 className="project-card-title">{project.title}</h2>
+                <span className="project-card-subtitle">{project.subtitle}</span>
+              </div>
+              <p className="project-card-description">{project.description}</p>
+              <div className="project-tags">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="project-tag">{tag}</span>
+                ))}
+              </div>
             </div>
           </Link>
         ))}

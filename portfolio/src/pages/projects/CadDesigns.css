@@ -5,11 +5,11 @@
 }
 
 .cad-story-chunk {
-  --cad-bg: #080c10;
-  --cad-border: #1e2d3d;
-  --cad-accent: #4a9eff;
-  --cad-accent-dim: rgba(74, 158, 255, 0.18);
-  --cad-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --cad-bg:         #0e0c09;
+  --cad-border:     #2d2520;
+  --cad-accent:     #c8893a;
+  --cad-accent-dim: rgba(200, 137, 58, 0.15);
+  --cad-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
@@ -30,19 +30,13 @@
 }
 
 .cad-viewer-shell {
-  --cad-bg: #080c10;
-  --cad-border: #1e2d3d;
-  --cad-accent: #4a9eff;
-  --cad-accent-dim: rgba(74, 158, 255, 0.18);
-  --cad-mono: 'IBM Plex Mono', 'Courier New', monospace;
-
   font-family: var(--cad-mono);
   background: var(--cad-bg);
   border: 1px solid var(--cad-border);
   border-radius: 6px;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(74, 158, 255, 0.06),
+    0 0 0 1px rgba(200, 137, 58, 0.06),
     0 24px 48px rgba(0, 0, 0, 0.5);
 }
 
@@ -52,27 +46,35 @@
 
 .cad-story-eyebrow {
   margin: 0 0 0.5rem;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  font-size: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #7db8ff;
+  color: var(--amber);
 }
 
 .cad-story-copy h2 {
   margin: 0 0 0.85rem;
+  font-family: var(--serif);
   font-size: 1.8rem;
-  color: #f3f7fb;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text);
 }
 
 .cad-story-summary {
-  color: #c8d6e4;
-  font-size: 1.05rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
 }
 
 .cad-story-copy p {
-  line-height: 1.8;
-  color: #a7b5c4;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1.85;
+  color: var(--text-muted);
 }
 
 .cad-viewer-header {
@@ -80,21 +82,21 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.25rem;
-  background: #0c1219;
+  background: #130f0c;
   border-bottom: 1px solid var(--cad-border);
   flex-wrap: wrap;
 }
 
 .cad-instrument-label {
   font-size: 0.7rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--cad-accent);
-  text-shadow: 0 0 8px rgba(74, 158, 255, 0.4);
+  text-shadow: 0 0 8px rgba(200, 137, 58, 0.35);
 }
 
 .cad-divider {
-  color: #2a3a4a;
+  color: #2e2420;
   font-size: 1.2rem;
   line-height: 1;
   user-select: none;
@@ -127,19 +129,19 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.45rem 1.25rem;
-  background: #0a1018;
+  background: #100e0b;
   border-top: 1px solid var(--cad-border);
   font-size: 0.65rem;
   letter-spacing: 0.1em;
-  color: #4a7090;
+  color: #5a5048;
 }
 
 .cad-hint {
-  color: #2a4a60;
+  color: #3a3530;
 }
 
 .cad-status-sep {
-  color: #1e2d3d;
+  color: #2e2420;
 }
 
 .stl-viewer-frame {
@@ -153,12 +155,12 @@
   align-items: center;
   justify-content: center;
   background:
-    linear-gradient(180deg, rgba(8, 12, 16, 0.18), rgba(8, 12, 16, 0.5)),
-    radial-gradient(circle at center, rgba(74, 158, 255, 0.14), transparent 55%);
+    linear-gradient(180deg, rgba(14, 12, 9, 0.18), rgba(14, 12, 9, 0.5)),
+    radial-gradient(circle at center, rgba(200, 137, 58, 0.1), transparent 55%);
   border: 0;
   width: 100%;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  color: #d7ebff;
+  font-family: var(--mono);
+  color: var(--text);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 0.76rem;
@@ -167,13 +169,13 @@
 
 .stl-viewer-activation span {
   padding: 0.65rem 0.9rem;
-  border: 1px solid rgba(125, 184, 255, 0.4);
-  background: rgba(12, 18, 25, 0.72);
-  box-shadow: 0 0 18px rgba(74, 158, 255, 0.18);
+  border: 1px solid rgba(200, 137, 58, 0.35);
+  background: rgba(14, 12, 9, 0.72);
+  box-shadow: 0 0 18px rgba(200, 137, 58, 0.15);
 }
 
 .stl-viewer-activation:focus-visible {
-  outline: 2px solid #7db8ff;
+  outline: 2px solid var(--amber);
   outline-offset: -2px;
 }
 
