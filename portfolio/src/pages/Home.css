@@ -58,8 +58,8 @@
 
 .hero-eyebrow {
   font-family: var(--mono);
-  font-size: 0.63rem;
-  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--amber);
   margin-bottom: 1.75rem;
@@ -78,8 +78,8 @@
 
 .hero-description {
   font-family: var(--mono);
-  font-size: 0.78rem;
-  line-height: 1.95;
+  font-size: 0.88rem;
+  line-height: 1.9;
   color: var(--text-muted);
   margin-bottom: 2.75rem;
   max-width: 36ch;
@@ -102,8 +102,8 @@
 
 .highlight-item strong {
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.16em;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-faint);
   font-weight: 400;
@@ -112,7 +112,7 @@
 
 .highlight-item span {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   color: var(--teal);
   text-align: right;
 }

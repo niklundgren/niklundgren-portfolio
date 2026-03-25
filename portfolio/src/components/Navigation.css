@@ -58,9 +58,9 @@
   color: var(--text-muted);
   text-decoration: none;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 400;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.8rem 0;
   border-bottom: 1px solid var(--border);
@@ -112,8 +112,8 @@
   color: var(--text-faint);
   text-decoration: none;
   font-family: var(--mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0;
   transition: color 0.18s ease;

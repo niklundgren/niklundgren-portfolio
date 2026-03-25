@@ -15,8 +15,8 @@
 
 .projects-eyebrow {
   font-family: var(--mono);
-  font-size: 0.63rem;
-  letter-spacing: 0.24em;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--amber);
   margin-bottom: 0.85rem;
@@ -109,15 +109,15 @@
 
 .project-card-subtitle {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
   color: var(--text-muted);
 }
 
 .project-card-description {
   font-family: var(--mono);
   color: var(--text-muted);
-  font-size: 0.77rem;
+  font-size: 0.87rem;
   line-height: 1.85;
   margin: 0 0 1.25rem;
 }
@@ -134,8 +134,8 @@
   background-color: transparent;
   color: var(--text-faint);
   font-family: var(--mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
   border-radius: 2px;
