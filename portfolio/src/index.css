@@ -37,6 +37,26 @@
   --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --mono:  'JetBrains Mono', 'Courier New', monospace;
 
+  /* ── Font sizes ──────────────────────────── */
+  --fs-xs:   0.8rem;   /* index numbers, status bars, micro-tags  */
+  --fs-sm:   0.87rem;   /* captions, eyebrows, back-links, labels  */
+  --fs-base: 1.rem;   /* body copy                               */
+  --fs-md:   1.10rem;   /* nav links, card subtitles               */
+  --fs-lg:   1.20rem;   /* panel subtitles, minor headings         */
+  --fs-xl:   1.80rem;   /* panel/story titles, nav monogram        */
+  --fs-2xl:  2.50rem;   /* page display titles                     */
+
+  /* Semantic aliases */
+  --fs-eyebrow: var(--fs-sm);
+  --fs-body:    var(--fs-base);
+
+  /* ── Line heights ────────────────────────── */
+  --lh-tight:   1.2;    /* headings                                */
+  --lh-snug:    1.5;    /* compact UI elements                     */
+  --lh-base:    1.65;   /* captions, secondary text                */
+  --lh-relaxed: 1.8;    /* standard body copy                      */
+  --lh-loose:   1.9;    /* long-form prose                         */
+
   /* ── Applied ─────────────────────────────── */
   color-scheme: light;
   color: var(--text);
@@ -44,7 +64,7 @@
 
   font-family: var(--mono);
   font-size: 14px;
-  line-height: 1.7;
+  line-height: var(--lh-relaxed);
   font-weight: 400;
 
   font-synthesis: none;
@@ -66,7 +86,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--serif);
-  line-height: 1.2;
+  line-height: var(--lh-tight);
   font-weight: 400;
   color: var(--text);
 }

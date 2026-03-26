@@ -28,7 +28,7 @@
 
 .nav-monogram {
   font-family: var(--serif);
-  font-size: 1.65rem;
+  font-size: var(--fs-xl);
   font-weight: 400;
   font-style: italic;
   color: var(--amber);
@@ -58,7 +58,7 @@
   color: var(--text-muted);
   text-decoration: none;
   font-family: var(--mono);
-  font-size: 1.0rem;
+  font-size: var(--fs-md);
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -73,7 +73,7 @@
 
 .nav-tick {
   color: var(--text-faint);
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
   line-height: 1;
   display: inline-block;
   transition: color 0.18s ease, transform 0.18s ease;
@@ -112,7 +112,7 @@
   color: var(--text-faint);
   text-decoration: none;
   font-family: var(--mono);
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   padding: 0.2rem 0;
@@ -124,7 +124,7 @@
 }
 
 .social-glyph {
-  font-size: 1.3rem;
+  font-size: var(--fs-lg);
   width: 1.2em;
   text-align: center;
   flex-shrink: 0;
@@ -139,11 +139,11 @@
   flex-direction: column;
   gap: 0.15rem;
   font-family: var(--mono);
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-faint);
-  line-height: 1.5;
+  line-height: var(--lh-snug);
 }
 
 /* ── CV Download Button ───────────────────── */
@@ -154,7 +154,7 @@
   margin-top: 0.75rem;
   padding: 0.55em 1em;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--amber);
@@ -206,7 +206,7 @@
   }
 
   .nav-monogram {
-    font-size: 1.25rem;
+    font-size: var(--fs-lg);
   }
 
   .nav-menu {

@@ -13,7 +13,7 @@
   color: var(--text-muted);
   text-decoration: none;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 2.5rem;
@@ -41,7 +41,7 @@
 
 .project-subtitle {
   font-family: var(--mono);
-  font-size: 1.1rem;
+  font-size: var(--fs-md);
   letter-spacing: 0.04em;
   color: var(--text-muted);
   margin-bottom: 1.25rem;
@@ -58,7 +58,7 @@
   background-color: transparent;
   color: var(--text-faint);
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.22rem 0.6rem;
@@ -70,7 +70,7 @@
   color: var(--amber);
   text-decoration: none;
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-sm);
   margin-left: 0.5rem;
   letter-spacing: 0.06em;
   transition: color 0.2s ease;
@@ -97,8 +97,8 @@
 
 .project-section p {
   font-family: var(--mono);
-  font-size: 1.15rem;
-  line-height: 1.9;
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
   color: var(--text-muted);
   margin-bottom: 0.75rem;
 }
@@ -115,12 +115,12 @@
 
 .project-section ul {
   padding-left: 1.5rem;
-  line-height: 1.8;
+  line-height: var(--lh-relaxed);
 }
 
 .project-section li {
   font-family: var(--mono);
-  font-size: 1.15rem;
+  font-size: var(--fs-base);
   color: var(--text-muted);
   margin-bottom: 0.75rem;
 }

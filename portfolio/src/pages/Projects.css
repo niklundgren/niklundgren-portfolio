@@ -15,7 +15,7 @@
 
 .projects-eyebrow {
   font-family: var(--mono);
-  font-size: 0.95rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--amber);
@@ -63,7 +63,7 @@
 /* Auto-numbered index cell */
 .project-card-index {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   color: var(--text-faint);
   padding-top: 0.35rem;
@@ -109,7 +109,7 @@
 
 .project-card-subtitle {
   font-family: var(--mono);
-  font-size: 1.0rem;
+  font-size: var(--fs-md);
   letter-spacing: 0.04em;
   color: var(--text-muted);
 }
@@ -117,8 +117,8 @@
 .project-card-description {
   font-family: var(--mono);
   color: var(--text-muted);
-  font-size: 1.1rem;
-  line-height: 1.85;
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
   margin: 0 0 1.25rem;
 }
 
@@ -134,7 +134,7 @@
   background-color: transparent;
   color: var(--text-faint);
   font-family: var(--mono);
-  font-size: 0.88rem;
+  font-size: var(--fs-base);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.2rem 0.6rem;
@@ -161,6 +161,6 @@
   }
 
   .projects-title {
-    font-size: 2.2rem;
+    font-size: var(--fs-2xl);
   }
 }
