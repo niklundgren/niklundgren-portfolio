@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import './Skills.css';
+import SectionDivider from '../components/SectionDivider';
 
 /* ── Static data ──────────────────────────────── */
 
@@ -202,13 +203,6 @@ function renderKaTeX(latex, displayMode = false) {
 }
 
 /* ── Sub-components ───────────────────────────── */
-
-const SectionDivider = ({ num, title }) => (
-  <div className="skills-divider">
-    <span className="skills-divider-label">§ {num} — {title}</span>
-    <div className="skills-divider-rule" />
-  </div>
-);
 
 function renderInline(text) {
   const parts = text.split(/(\$[^$]+\$|\[\d+(?:,\d+)*\])/g);

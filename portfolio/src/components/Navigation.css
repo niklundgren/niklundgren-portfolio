@@ -132,6 +132,17 @@
   border-bottom: 1px solid var(--border);
 }
 
+.nav-subitem {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-sublink-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .nav-sublink {
   color: var(--text-faint);
   text-decoration: none;
@@ -141,6 +152,7 @@
   text-transform: uppercase;
   padding: 0.2rem 0;
   transition: color 0.18s ease, transform 0.18s ease;
+  flex: 1;
 }
 
 .nav-sublink:hover {
@@ -150,6 +162,57 @@
 
 .nav-sublink.active {
   color: var(--amber);
+}
+
+.nav-sub-expand {
+  border: none;
+  background: transparent;
+  color: var(--text-faint);
+  padding: 0 0 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.nav-sub-expand:hover {
+  color: var(--amber);
+  background: transparent;
+  border: none;
+}
+
+.nav-sub-expand.open {
+  color: var(--amber);
+  transform: rotate(180deg);
+}
+
+.nav-sub-submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.2rem 0 0.3rem 1rem;
+}
+
+.nav-sub-sublink {
+  color: var(--text-faint);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem 0;
+  opacity: 0.75;
+  transition: color 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+}
+
+.nav-sub-sublink:hover {
+  color: var(--text);
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.nav-sub-sublink.active {
+  color: var(--amber);
+  opacity: 1;
 }
 
 /* ── CV Download Button ───────────────────── */
