@@ -146,6 +146,30 @@
   line-height: 1.5;
 }
 
+/* ── CV Download Button ───────────────────── */
+
+.nav-cv-btn {
+  display: block;
+  text-align: center;
+  margin-top: 0.75rem;
+  padding: 0.55em 1em;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid var(--border-hi);
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.nav-cv-btn:hover {
+  background: var(--amber);
+  color: #ffffff;
+  border-color: var(--amber);
+}
+
 /* ── Responsive ───────────────────────────── */
 
 @media (max-width: 860px) {
@@ -211,6 +235,10 @@
   }
 
   .nav-badge {
+    display: none;
+  }
+
+  .nav-cv-btn {
     display: none;
   }
 }
