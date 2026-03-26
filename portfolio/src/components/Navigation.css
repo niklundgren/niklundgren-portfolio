@@ -152,62 +152,12 @@
   color: var(--amber);
 }
 
-/* ── Social Links ─────────────────────────── */
-
-.social-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  margin-top: auto;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  color: var(--text-faint);
-  text-decoration: none;
-  font-family: var(--mono);
-  font-size: var(--fs-md);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.2rem 0;
-  transition: color 0.18s ease;
-}
-
-.social-link:hover {
-  color: var(--amber);
-}
-
-.social-glyph {
-  font-size: var(--fs-lg);
-  width: 1.2em;
-  text-align: center;
-  flex-shrink: 0;
-}
-
-/* ── Bottom Badge ─────────────────────────── */
-
-.nav-badge {
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  font-family: var(--mono);
-  font-size: var(--fs-sm);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  line-height: var(--lh-snug);
-}
-
 /* ── CV Download Button ───────────────────── */
 
 .nav-cv-btn {
   display: block;
   text-align: center;
-  margin-top: 0.75rem;
+  margin-top: auto;
   padding: 0.55em 1em;
   font-family: var(--mono);
   font-size: var(--fs-sm);
@@ -282,20 +232,6 @@
 
   .nav-expand {
     padding-right: 0.4rem;
-  }
-
-  .social-links {
-    flex-direction: row;
-    margin-top: 0;
-    gap: 1rem;
-  }
-
-  .social-link span:last-child {
-    display: none;
-  }
-
-  .nav-badge {
-    display: none;
   }
 
   .nav-cv-btn {

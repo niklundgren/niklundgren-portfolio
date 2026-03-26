@@ -5,13 +5,6 @@ import './Navigation.css';
 const Navigation = () => {
   const { pathname, hash } = useLocation();
 
-  const socialLinks = {
-    email: 'nwlundgren@ucdavis.edu',
-    linkedin: 'https://linkedin.com/in/niklundgren',
-    scholar: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
-    phone: '(805) 433-5953',
-  };
-
   const navItems = [
     { to: '/', label: 'Home' },
     {
@@ -105,42 +98,6 @@ const Navigation = () => {
               )}
             </div>
           ))}
-        </div>
-
-        <div className="social-links">
-          <a href={`mailto:${socialLinks.email}`} className="social-link" title="Email">
-            <span className="social-glyph">✉</span>
-            <span>Email</span>
-          </a>
-          <a
-            href={socialLinks.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link"
-            title="LinkedIn"
-          >
-            <span className="social-glyph">in</span>
-            <span>LinkedIn</span>
-          </a>
-          <a
-            href={socialLinks.scholar}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link"
-            title="Google Scholar"
-          >
-            <span className="social-glyph">G</span>
-            <span>Scholar</span>
-          </a>
-          <a href={`tel:${socialLinks.phone}`} className="social-link" title="Phone">
-            <span className="social-glyph">☎</span>
-            <span>Phone</span>
-          </a>
-        </div>
-
-        <div className="nav-badge">
-          <span>UC Davis</span>
-          <span>PhD Candidate</span>
         </div>
 
         <a href="/CV-nicholas-lundgren.pdf" download className="nav-cv-btn">
