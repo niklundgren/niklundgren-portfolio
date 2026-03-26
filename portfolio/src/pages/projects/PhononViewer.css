@@ -38,7 +38,7 @@
 }
 
 .pv-instrument-label {
-  font-size: 0.7rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--pv-accent);
@@ -47,13 +47,13 @@
 
 .pv-divider {
   color: #2e2420;
-  font-size: 1.2rem;
+  font-size: var(--fs-lg);
   line-height: 1;
   user-select: none;
 }
 
 .pv-field-label {
-  font-size: 0.6rem;
+  font-size: var(--fs-xs);
   font-weight: 500;
   letter-spacing: 0.14em;
   color: #5a5048;
@@ -80,7 +80,7 @@
   border-radius: 3px;
   color: var(--text);
   font-family: var(--pv-mono);
-  font-size: 0.75rem;
+  font-size: var(--fs-sm);
   padding: 0.3rem 1.8rem 0.3rem 0.6rem;
   cursor: pointer;
   transition: border-color 0.15s, box-shadow 0.15s;
@@ -101,7 +101,7 @@
 .pv-select-arrow {
   position: absolute;
   right: 0.5rem;
-  font-size: 0.6rem;
+  font-size: var(--fs-xs);
   color: #5a5048;
   pointer-events: none;
 }
@@ -122,7 +122,7 @@
   background: transparent;
   color: #5a5048;
   font-family: var(--pv-mono);
-  font-size: 0.75rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
   cursor: pointer;
   transition: all 0.12s ease;

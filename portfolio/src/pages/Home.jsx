@@ -54,7 +54,7 @@ const Home = () => {
           </div>
 
           <div className="highlights-feed">
-            <p className="highlights-eyebrow">Recent</p>
+            <p className="highlights-eyebrow">Academic Work</p>
             <div className="highlight-item">
               <strong>2026 · Accepted</strong>
               <span>κALDo 2.0 — <em>Computer Physics Communications</em></span>
@@ -121,7 +121,7 @@ const Home = () => {
       {/* ── Stats bar ─────────────────────────── */}
       <div className="stats-bar">
         <div className="stat-item">
-          <span className="stat-num">180</span>
+          <span className="stat-num">209</span>
           <span className="stat-label">GitHub Stars</span>
         </div>
         <span className="stat-sep">·</span>

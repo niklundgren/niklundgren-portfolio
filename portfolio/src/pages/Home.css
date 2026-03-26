@@ -45,7 +45,7 @@
 
 .kaldo-name {
   font-family: var(--mono);
-  font-size: 1.6rem;
+  font-size: var(--fs-xl);
   font-weight: 600;
   color: var(--text);
   letter-spacing: -0.02em;
@@ -53,7 +53,7 @@
 
 .kaldo-badge {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--blue);
@@ -65,7 +65,7 @@
 
 .kaldo-full-name {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-faint);
@@ -74,10 +74,10 @@
 
 .kaldo-desc {
   font-family: var(--mono);
-  font-size: 0.9rem;
+  font-size: var(--fs-base);
   font-weight: 500;
   color: var(--text-muted);
-  line-height: 1.8;
+  line-height: var(--lh-relaxed);
   margin: 0;
 }
 
@@ -90,13 +90,13 @@
 
 .kaldo-stat {
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: var(--fs-sm);
   color: var(--text-muted);
 }
 
 .kaldo-stat-sep {
   color: var(--border-hi);
-  font-size: 0.8rem;
+  font-size: var(--fs-sm);
 }
 
 .kaldo-star {
@@ -111,7 +111,7 @@
 
 .kaldo-link {
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 0.45em 0.85em;
@@ -146,7 +146,7 @@
 
 .kaldo-footer {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: var(--fs-sm);
   color: var(--text-faint);
   margin: 0;
   padding-top: 0.5rem;
@@ -162,7 +162,7 @@
 
 .highlights-eyebrow {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--blue);
@@ -185,7 +185,7 @@
 
 .hero-eyebrow {
   font-family: var(--mono);
-  font-size: 0.95rem;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--blue);
@@ -226,9 +226,9 @@
 
 .hero-description {
   font-family: var(--mono);
-  font-size: 1.1rem;
+  font-size: var(--fs-base);
   font-weight: 500;
-  line-height: 1.9;
+  line-height: var(--lh-loose);
   color: var(--text-muted);
   margin: 0 0 1.5rem;
   max-width: 36ch;
@@ -244,7 +244,7 @@
 
 .hero-cta-btn {
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.6em 1.1em;
@@ -295,7 +295,7 @@
 
 .highlight-item strong {
   font-family: var(--mono);
-  font-size: 0.88rem;
+  font-size: var(--fs-base);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-faint);
@@ -305,7 +305,7 @@
 
 .highlight-item span {
   font-family: var(--mono);
-  font-size: 1.05rem;
+  font-size: var(--fs-md);
   color: var(--teal);
   text-align: right;
 }
@@ -339,7 +339,7 @@
 
 .stat-label {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -348,7 +348,7 @@
 
 .stat-sep {
   color: var(--border-hi);
-  font-size: 1.1rem;
+  font-size: var(--fs-md);
   font-family: var(--mono);
 }
 
@@ -361,7 +361,7 @@
 
 .expertise-eyebrow {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: var(--fs-eyebrow);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--blue);
@@ -397,14 +397,14 @@
 }
 
 .expertise-icon {
-  font-size: 1.1rem;
+  font-size: var(--fs-md);
   color: var(--blue);
   flex-shrink: 0;
 }
 
 .expertise-label {
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -419,7 +419,7 @@
 
 .expertise-tag {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.06em;
   color: var(--text-muted);
   background: var(--surface-2);
