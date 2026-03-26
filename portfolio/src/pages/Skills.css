@@ -34,6 +34,7 @@
 
 .skills-section {
   margin-bottom: 5rem;
+  scroll-margin-top: 2rem;
 }
 
 .skills-section-intro {
@@ -209,7 +210,7 @@
 .skills-figure-num {
   display: block;
   font-family: var(--mono);
-  font-size: 0.62rem;
+  font-size: var(--fs-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--amber);
@@ -219,7 +220,7 @@
 .skills-figure-label {
   display: block;
   font-family: var(--mono);
-  font-size: 0.86rem;
+  font-size: var(--fs-sm);
   letter-spacing: 0.04em;
   color: var(--text);
   line-height: 1.35;
@@ -228,7 +229,7 @@
 .skills-figure-teaser {
   margin-top: 0.55rem;
   font-family: var(--serif);
-  font-size: 0.95rem;
+  font-size: var(--fs-sm);
   line-height: 1.55;
   color: var(--text-muted);
 }
@@ -238,7 +239,7 @@
 .skills-lightbox-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(7, 6, 5, 0.8);
+  background: rgba(15, 23, 42, 0.22);
   backdrop-filter: blur(4px);
   z-index: 1100;
   animation: backdropFadeIn 0.2s ease;
@@ -254,8 +255,8 @@
   padding: 1.25rem;
   border: 1px solid var(--border-hi);
   border-radius: 14px;
-  background: rgba(17, 15, 12, 0.96);
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 32px 80px rgba(15, 23, 42, 0.18);
 }
 
 .skills-lightbox-close {
@@ -263,7 +264,8 @@
   top: 1rem;
   right: 1rem;
   z-index: 1;
-  background: rgba(19, 18, 16, 0.85);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: var(--border-hi);
 }
 
 .skills-lightbox-stage {
@@ -272,7 +274,7 @@
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--border);
-  background: #0d0c0a;
+  background: var(--surface-2);
 }
 
 .skills-lightbox-image {
@@ -281,7 +283,7 @@
   display: block;
   object-fit: contain;
   max-height: calc(92vh - 2.5rem);
-  background: #0d0c0a;
+  background: var(--surface-2);
 }
 
 .skills-lightbox-copy {
@@ -290,6 +292,7 @@
   justify-content: center;
   padding: 1.5rem 1.25rem;
   border-left: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(241, 245, 249, 0.35), rgba(255, 255, 255, 0.9));
 }
 
 .skills-lightbox-eyebrow,
@@ -648,6 +651,12 @@
 }
 
 /* ── Responsive ───────────────────────────── */
+
+@media (max-width: 860px) {
+  .skills-section {
+    scroll-margin-top: 6.5rem;
+  }
+}
 
 @media (max-width: 860px) {
   .skills-page {

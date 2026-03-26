@@ -1,10 +1,11 @@
 /* ── Widget shell ─────────────────────────────────────────── */
 .pv-widget {
-  --pv-bg:         #0e0c09;
-  --pv-border:     #2d2520;
-  --pv-accent:     #c8893a;
-  --pv-accent-dim: rgba(200, 137, 58, 0.15);
-  --pv-active-glow: 0 0 10px rgba(200, 137, 58, 0.4);
+  --pv-bg:         var(--surface);
+  --pv-surface:    var(--surface-2);
+  --pv-border:     var(--border-hi);
+  --pv-accent:     var(--blue);
+  --pv-accent-dim: var(--blue-dim);
+  --pv-active-glow: 0 0 10px var(--blue-glow);
   --pv-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   font-family: var(--pv-mono);
@@ -14,8 +15,8 @@
   overflow: hidden;
   margin-bottom: 3rem;
   box-shadow:
-    0 0 0 1px rgba(200, 137, 58, 0.06),
-    0 24px 48px rgba(0, 0, 0, 0.5);
+    0 0 0 1px var(--blue-faint),
+    0 18px 36px rgba(15, 23, 42, 0.12);
 }
 
 /* ── Header / controls bar ────────────────────────────────── */
@@ -26,7 +27,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   padding: 0.75rem 1.25rem;
-  background: #130f0c;
+  background: var(--pv-surface);
   border-bottom: 1px solid var(--pv-border);
 }
 
@@ -42,11 +43,10 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--pv-accent);
-  text-shadow: 0 0 8px rgba(200, 137, 58, 0.35);
 }
 
 .pv-divider {
-  color: #2e2420;
+  color: var(--border-hi);
   font-size: var(--fs-lg);
   line-height: 1;
   user-select: none;
@@ -56,7 +56,7 @@
   font-size: var(--fs-xs);
   font-weight: 500;
   letter-spacing: 0.14em;
-  color: #5a5048;
+  color: var(--text-faint);
   white-space: nowrap;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .pv-select option {
-  background: #130f0c;
+  background: var(--surface);
   color: var(--text);
 }
 
@@ -102,7 +102,7 @@
   position: absolute;
   right: 0.5rem;
   font-size: var(--fs-xs);
-  color: #5a5048;
+  color: var(--text-faint);
   pointer-events: none;
 }
 
@@ -120,7 +120,7 @@
   border: 1px solid var(--pv-border);
   border-radius: 3px;
   background: transparent;
-  color: #5a5048;
+  color: var(--text-faint);
   font-family: var(--pv-mono);
   font-size: var(--fs-sm);
   font-weight: 500;
@@ -140,7 +140,6 @@
   background: var(--pv-accent-dim);
   color: var(--pv-accent);
   box-shadow: var(--pv-active-glow);
-  text-shadow: 0 0 6px rgba(200, 137, 58, 0.5);
 }
 
 /* ── Display panel ────────────────────────────────────────── */
@@ -148,7 +147,7 @@
   position: relative;
   width: 100%;
   height: 680px;
-  background: #0a0908;
+  background: var(--surface-2);
   overflow: hidden;
 }
 
