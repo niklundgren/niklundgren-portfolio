@@ -1,7 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
-import JustifiedGallery from '../components/JustifiedGallery';
 import './Skills.css';
 
 /* ── Static data ──────────────────────────────── */
@@ -15,14 +14,14 @@ const software = [
 ];
 
 const figures = [
-  { src: '/figures/mgo-disp.png', num: 'Fig. 01', label: 'MgO Phonon Dispersion', caption: 'Phonon dispersion relations for magnesium oxide computed via lattice dynamics.' },
-  { src: '/figures/mgo-props.png', num: 'Fig. 02', label: 'MgO Thermal Properties', caption: 'Thermal conductivity and heat capacity of MgO as a function of temperature.' },
-  { src: '/figures/si-bls-strain.png', num: 'Fig. 03', label: 'Bilayer Silicene Under Strain', caption: 'Structural and electronic properties of bilayer silicene under applied biaxial strain.' },
-  { src: '/figures/si-strain-k.png', num: 'Fig. 04', label: 'Silicon Thermal Conductivity vs. Strain', caption: 'Dependence of thermal conductivity on strain for silicon phases.' },
-  { src: '/figures/si-xls-rmse.png', num: 'Fig. 05', label: 'Silicon MLIP Parity Plot', caption: 'Force from machine learning interatomic potential vs. DFT reference across silicon phases.' },
-  { src: '/figures/sige-diffusivity.png', num: 'Fig. 06', label: 'SiGe Diffusivity', caption: 'Thermal diffusivity of amorphous silicon–germanium alloys.' },
-  { src: '/figures/sige-sizeconverge.png', num: 'Fig. 07', label: 'SiGe Size Convergence', caption: 'Convergence of thermal properties with supercell size in amorphous SiGe.' },
-  { src: '/figures/sige-velocities.png', num: 'Fig. 08', label: 'SiGe Phonon Velocities', caption: 'Phonon group velocities in amorphous SiGe alloys.' },
+  { src: '/figures/mgo-disp.png', num: 'Fig. 01', label: 'MgO Phonon Dispersion', caption: 'Phonon dispersion relations for magnesium oxide computed via lattice dynamics.', span: 'wide' },
+  { src: '/figures/mgo-props.png', num: 'Fig. 02', label: 'MgO Thermal Properties', caption: 'Thermal conductivity and heat capacity of MgO as a function of temperature.', span: 'wide' },
+  { src: '/figures/si-bls-strain.png', num: 'Fig. 03', label: 'Bilayer Silicene Under Strain', caption: 'Structural and electronic properties of bilayer silicene under applied biaxial strain.', span: 'tall' },
+  { src: '/figures/si-strain-k.png', num: 'Fig. 04', label: 'Silicon Thermal Conductivity vs. Strain', caption: 'Dependence of thermal conductivity on strain for silicon phases.', span: 'tall' },
+  { src: '/figures/si-xls-rmse.png', num: 'Fig. 05', label: 'Silicon MLIP Parity Plot', caption: 'Force from machine learning interatomic potential vs. DFT reference across silicon phases.', span: 'wide' },
+  { src: '/figures/sige-diffusivity.png', num: 'Fig. 06', label: 'SiGe Diffusivity', caption: 'Thermal diffusivity of amorphous silicon–germanium alloys.', span: 'wide' },
+  { src: '/figures/sige-sizeconverge.png', num: 'Fig. 07', label: 'SiGe Size Convergence', caption: 'Convergence of thermal properties with supercell size in amorphous SiGe.', span: 'standard' },
+  { src: '/figures/sige-velocities.png', num: 'Fig. 08', label: 'SiGe Phonon Velocities', caption: 'Phonon group velocities in amorphous SiGe alloys.', span: 'standard' },
 ];
 
 /* ── Writing section data ─────────────────────── */
@@ -335,11 +334,66 @@ const WritingPanel = ({ section, onClose }) => {
   );
 };
 
+const FigureCard = ({ figure, onClick }) => (
+  <button
+    type="button"
+    className={`skills-figure-card is-${figure.span}`}
+    onClick={() => onClick(figure)}
+    aria-label={`Open ${figure.label}`}
+  >
+    <div className="skills-figure-image-wrap">
+      <img src={figure.src} alt={figure.label} className="skills-figure-image" />
+    </div>
+    <div className="skills-figure-meta">
+      <span className="skills-figure-num">{figure.num}</span>
+      <span className="skills-figure-label">{figure.label}</span>
+      <p className="skills-figure-teaser">{figure.caption}</p>
+    </div>
+  </button>
+);
+
+const FigureLightbox = ({ figure, onClose }) => {
+  useEffect(() => {
+    if (!figure) return;
+    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    document.addEventListener('keydown', handleKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKey);
+      document.body.style.overflow = '';
+    };
+  }, [figure, onClose]);
+
+  if (!figure) return null;
+
+  return (
+    <>
+      <div className="skills-lightbox-backdrop" onClick={onClose} />
+      <div className="skills-lightbox" role="dialog" aria-modal="true" aria-label={figure.label}>
+        <button type="button" className="skills-lightbox-close" onClick={onClose} aria-label="Close figure">
+          &#x2715;
+        </button>
+        <div className="skills-lightbox-stage">
+          <img src={figure.src} alt={figure.label} className="skills-lightbox-image" />
+        </div>
+        <aside className="skills-lightbox-copy">
+          <p className="skills-lightbox-eyebrow">Research Figure</p>
+          <p className="skills-lightbox-num">{figure.num}</p>
+          <h3 className="skills-lightbox-title">{figure.label}</h3>
+          <p className="skills-lightbox-text">{figure.caption}</p>
+        </aside>
+      </div>
+    </>
+  );
+};
+
 /* ── Page ─────────────────────────────────────── */
 
 const Skills = () => {
   const [activeSection, setActiveSection] = useState(null);
+  const [activeFigure, setActiveFigure] = useState(null);
   const closePanel = useCallback(() => setActiveSection(null), []);
+  const closeFigure = useCallback(() => setActiveFigure(null), []);
 
   return (
     <div className="skills-page">
@@ -368,19 +422,9 @@ const Skills = () => {
         </div>
       </section>
 
-      {/* \u2500\u2500 \u00a7 01 Data Visualization \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */}
-      <section className="skills-section" id="visualization">
-        <SectionDivider num="01" title="Data Visualization" />
-        <p className="skills-section-intro">
-          Scientific figures from published and in-progress research on thermal transport,
-          lattice dynamics, and machine learning interatomic potentials.
-        </p>
-        <JustifiedGallery figures={figures} targetRowHeight={280} gap={14} />
-      </section>
-
-      {/* \u2500\u2500 \u00a7 02 Technical Writing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */}
+      {/* \u2500\u2500 \u00a7 01 Technical Writing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */}
       <section className="skills-section" id="writing">
-        <SectionDivider num="02" title="Technical Writing" />
+        <SectionDivider num="01" title="Technical Writing" />
         <p className="skills-section-intro">
           During my Ph.D., I've been frustrated by many textbooks that try to explain dense physics concepts while doing the bare minimum to explain the physical
           implications of the equations they show. It's made me passionate about thorough, well-explained technical writing. The samples below were originally written
@@ -401,7 +445,23 @@ const Skills = () => {
         </div>
       </section>
 
+      {/* \u2500\u2500 \u00a7 02 Data Visualization \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */}
+      <section className="skills-section" id="visualization">
+        <SectionDivider num="02" title="Data Visualization" />
+        <p className="skills-section-intro">
+          Research figures from published and in-progress work on lattice dynamics,
+          thermal transport, and machine learning interatomic potentials. Open any
+          panel for a closer reading of the visual story.
+        </p>
+        <div className="skills-figure-grid" aria-label="Research figure gallery">
+          {figures.map((figure) => (
+            <FigureCard key={figure.src} figure={figure} onClick={setActiveFigure} />
+          ))}
+        </div>
+      </section>
+
       <WritingPanel section={activeSection} onClose={closePanel} />
+      <FigureLightbox figure={activeFigure} onClose={closeFigure} />
 
     </div>
   );

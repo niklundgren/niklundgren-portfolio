@@ -35,9 +35,9 @@
   color: var(--text);
   background-color: var(--bg);
 
-  font-family: var(--mono);
+  font-family: var(--serif);
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.8;
   font-weight: 400;
 
   font-synthesis: none;
@@ -51,6 +51,12 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--bg);
+  font-family: var(--serif);
+}
+
+p,
+li {
+  font-family: var(--serif);
 }
 
 #root {
