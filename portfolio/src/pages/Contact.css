@@ -30,7 +30,7 @@
 }
 
 .contact-intro {
-  max-width: 42rem;
+  max-width: 100%;
   font-size: 1.12rem;
   line-height: 1.85;
   color: var(--text-muted);

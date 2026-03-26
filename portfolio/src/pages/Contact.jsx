@@ -6,7 +6,7 @@ const CONTACT = {
   phoneLabel: '(805) 433-5953',
   phoneHref: 'tel:+18054335953',
   linkedin: 'https://linkedin.com/in/niklundgren',
-  scholar: 'https://scholar.google.com/scholar?q=%22Nicholas+W.+Lundgren%22',
+  scholar: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
 };
 
 const Contact = () => {

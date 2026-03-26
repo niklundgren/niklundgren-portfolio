@@ -7,7 +7,7 @@ const Navigation = () => {
   const socialLinks = {
     email: 'nwlundgren@ucdavis.edu',
     linkedin: 'https://linkedin.com/in/niklundgren',
-    github: 'https://github.com/niklundgren',
+    scholar: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
     phone: '(805) 433-5953',
   };
 
@@ -58,14 +58,14 @@ const Navigation = () => {
             <span>LinkedIn</span>
           </a>
           <a
-            href={socialLinks.github}
+            href={socialLinks.scholar}
             target="_blank"
             rel="noopener noreferrer"
             className="social-link"
-            title="GitHub"
+            title="Google Scholar"
           >
-            <span className="social-glyph">⌘</span>
-            <span>GitHub</span>
+            <span className="social-glyph">G</span>
+            <span>Scholar</span>
           </a>
           <a href={`tel:${socialLinks.phone}`} className="social-link" title="Phone">
             <span className="social-glyph">☎</span>
