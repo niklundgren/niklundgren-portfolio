@@ -24,7 +24,7 @@
 
 .skills-title {
   font-family: var(--serif);
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 300;
   font-style: italic;
   color: var(--text);
@@ -38,10 +38,10 @@
 
 .skills-section-intro {
   font-family: var(--mono);
-  font-size: 0.85rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   line-height: 1.85;
-  max-width: 72ch;
+  margin-left: 1.5rem;
   margin-bottom: 2.5rem;
 }
 
@@ -56,7 +56,7 @@
 
 .skills-divider-label {
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 1.75rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -170,6 +170,22 @@
   max-width: 56ch;
 }
 
+/* ── Writing subsection label ─────────────────── */
+
+.writing-subsection-label {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.25rem;
+  margin-top: 2rem;
+  max-width: 75%;
+}
+
 /* ── Writing cards ────────────────────────────── */
 
 .writing-cards-grid {
@@ -200,7 +216,7 @@
 
 .writing-card-title {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 1.0rem;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -225,7 +241,7 @@
 }
 
 .writing-card-preview .katex {
-  font-size: 0.82rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
 }
 
@@ -302,7 +318,7 @@
 
 .writing-panel-subtitle {
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 1.2rem;
   color: var(--text-muted);
   line-height: 1.6;
 }
@@ -312,7 +328,7 @@
   border: 1px solid var(--border);
   color: var(--text-muted);
   font-family: var(--mono);
-  font-size: 0.8rem;
+  font-size: 1.6rem;
   padding: 0.4em 0.7em;
   cursor: pointer;
   transition: border-color 0.2s ease, color 0.2s ease;
@@ -329,14 +345,13 @@
 
 .writing-panel-body {
   padding: 2.5rem 3rem;
-  max-width: 72ch;
 }
 
 /* ── Panel content blocks ─────────────────────── */
 
 .panel-para {
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: 1.15rem;
   line-height: 1.9;
   color: var(--text-muted);
   margin-bottom: 1.25em;
@@ -368,6 +383,101 @@
   color: var(--text-muted);
   margin-top: 0.75rem;
   line-height: 1.65;
+}
+
+/* ── Panel table ──────────────────────────────── */
+
+.panel-table {
+  margin: 2rem 0;
+  overflow-x: auto;
+}
+
+.panel-table table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: var(--mono);
+  font-size: 1.56rem;
+}
+
+.panel-table th,
+.panel-table td {
+  border: 1px solid var(--border);
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
+.panel-table th {
+  color: var(--amber);
+  background: var(--surface-2);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.panel-table td {
+  color: var(--text-muted);
+}
+
+.panel-table figcaption {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+  line-height: 1.65;
+}
+
+/* ── Citation superscript ─────────────────────── */
+
+.panel-cite {
+  font-family: var(--mono);
+  font-size: 0.65em;
+  color: var(--amber);
+  vertical-align: super;
+  line-height: 0;
+}
+
+/* ── References list ──────────────────────────── */
+
+.panel-refs {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.panel-refs-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 1rem;
+}
+
+.panel-refs-list {
+  list-style: none;
+  padding: 0;
+}
+
+.panel-refs-item {
+  font-family: var(--mono);
+  font-size: 1.01rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+  padding-left: 2.5rem;
+  position: relative;
+}
+
+.panel-refs-item::before {
+  content: "[" attr(data-n) "]";
+  position: absolute;
+  left: 0;
+  color: var(--amber);
+}
+
+.panel-refs-item em {
+  font-style: italic;
+  color: var(--text-faint);
 }
 
 /* KaTeX color overrides for dark background */
