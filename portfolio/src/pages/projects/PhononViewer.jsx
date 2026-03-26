@@ -1,51 +1,58 @@
 import { useState } from 'react';
+import katex from 'katex';
 import { Link } from 'react-router-dom';
+import 'katex/dist/katex.min.css';
 import './PhononViewer.css';
 import './ProjectPage.css';
 
 const MATERIALS = {
-  silicene_25x25: {
-    label: 'Silicene',
-    detail: '25×25 supercell',
-    formula: 'Si',
-    modes: [0, 1, 2, 3, 4, 5],
-  },
   silicene_4x4: {
     label: 'Silicene',
     detail: '4×4 supercell',
     formula: 'Si',
-    modes: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    modes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
   },
   bilayer_silicene_4x4: {
     label: 'Bilayer Silicene',
     detail: '4×4 supercell',
     formula: 'Si₂',
-    modes: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    modes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
   },
   silicon_3x3x3: {
     label: 'Silicon (Diamond)',
     detail: '3×3×3 supercell',
     formula: 'Si',
-    modes: [2, 3, 4, 5],
+    modes: [0, 1, 2, 3, 4, 5],
   },
   mgo_3x3x3: {
     label: 'MgO',
     detail: '3×3×3 supercell',
     formula: 'MgO',
-    modes: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    modes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
   },
 };
 
+function renderKaTeX(latex, displayMode = false) {
+  return {
+    __html: katex.renderToString(latex, {
+      displayMode,
+      throwOnError: false,
+      output: 'html',
+    }),
+  };
+}
+
 const PhononViewerWidget = () => {
-  const [material, setMaterial] = useState('silicene_25x25');
-  const [mode, setMode] = useState(0);
+  const [material, setMaterial] = useState('silicene_4x4');
+  const [mode, setMode] = useState(MATERIALS.silicene_4x4.modes[0]);
 
   const current = MATERIALS[material];
   const src = `/phonon-viewer/${material}/mode_${mode}.html`;
 
   const changeMaterial = (val) => {
+    const nextMaterial = MATERIALS[val];
     setMaterial(val);
-    setMode(0);
+    setMode(nextMaterial.modes[0]);
   };
 
   const changeMode = (m) => {
@@ -135,36 +142,15 @@ const PhononViewer = () => {
       <section className="project-section">
         <h2>Overview</h2>
         <p>
-          Phonon Viewer is a visualization tool built to work alongside{' '}
+          This phonon viewer is using output from {' '}
           <a href="https://github.com/nanotheorygroup/kaldo" target="_blank" rel="noopener noreferrer">
             κALDo
           </a>
           , an open-source Python package for lattice dynamics and thermal transport
-          simulations in crystalline and amorphous materials. The viewer makes it
-          possible to interactively inspect phonon modes computed by κALDo.
+          simulations in crystalline and amorphous materials. κALDo outputs the trajectory of the atoms
+          using the eigenmodes of the harmonic Hamiltonian, and the site here puts it in a stylized viewport.
+          Featured here are a few materials that I've studied during my PhD.
         </p>
-      </section>
-
-      <section className="project-section">
-        <h2>My Contributions to κALDo</h2>
-        <p>
-          Beyond building the viewer, I contributed directly to the κALDo codebase
-          across several areas:
-        </p>
-        <ul>
-          <li>
-            <strong>Core component implementation</strong> — worked on key parts of
-            the lattice dynamics pipeline, including force constant handling and
-            phonon property calculations.
-          </li>
-          <li>
-            <strong>Non-analytical correction (NAC)</strong> — led the full
-            implementation of the non-analytical correction functionality, which
-            accounts for the long-range dipole–dipole interactions in polar
-            materials and is essential for accurately capturing the LO-TO splitting
-            near the Γ-point in phonon dispersion.
-          </li>
-        </ul>
       </section>
 
       <section className="project-section">
@@ -172,10 +158,44 @@ const PhononViewer = () => {
         <p>
           Phonons are quantized vibrations of atoms in a crystal lattice — the
           collective, wave-like oscillations that carry heat through a solid.
+          The unit cell of a crystal lattice has <span dangerouslySetInnerHTML={renderKaTeX('3N')} /> normal modes of vibration.
+          Phonons represent a traveling excitation of one of these normal modes,
+          and their energies change with the exact direction <span dangerouslySetInnerHTML={renderKaTeX('\\vec{k}')} /> and spatial frequency{' '}
+          <span dangerouslySetInnerHTML={renderKaTeX('|k|')} /> of their travel.
+          <br></br>
+          <br></br>
+          In the visualization above, I am showing all the phonon modes at a specific choice of{' '}
+          <span dangerouslySetInnerHTML={renderKaTeX('\\vec{k}')} />, specifically not chosen to be the{' '}
+          <span dangerouslySetInnerHTML={renderKaTeX('\\Gamma')} /> point
+          (where <span dangerouslySetInnerHTML={renderKaTeX('\\Gamma')} /> is the name for the wavevector{' '}
+          <span dangerouslySetInnerHTML={renderKaTeX('\\vec{k}=\\vec{0}')} />) so that the acoustic modes are visible.
+          <br></br>
+          <br></br>
           Understanding phonon dispersion (how phonon frequencies vary with
-          wavevector) is central to predicting thermal conductivity and other
-          thermodynamic properties of materials.
+          their wavevector) is central to predicting thermal conductivity and 
+          other thermodynamic properties of materials.
         </p>
+      </section>
+
+      <section className="project-section">
+        <h2>My Contributions to κALDo</h2>
+        <p>
+          I contributed directly to the κALDo codebase across several areas:
+        </p>
+        <ul>
+          <li>
+            <strong>Core component implementation</strong> — worked on key parts of the lattice dynamics pipeline, 
+            including parallelizing the calculation of force constants through finite difference
+            and calculating various phonon properties, like the participation ratio.
+          </li>
+          <li>
+            <strong>Non-analytical correction (NAC)</strong> — I led the full
+            implementation of the non-analytical correction functionality, which
+            accounts for the long-range dipole–dipole interactions in polar
+            materials and is essential for accurately capturing the LO-TO splitting
+            near the Γ-point in phonon dispersion. Checkout the corrected dispersion of MgO at -reference-
+          </li>
+        </ul>
       </section>
     </div>
   );

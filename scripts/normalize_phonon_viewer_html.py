@@ -62,13 +62,81 @@ STYLE_BLOCK = """<style>
 </style>"""
 
 SCRIPT_TAIL = """var viewer = $3Dmol.createViewer("viewer", {backgroundColor: "0x16120d"});
-viewer.addModelsAsFrames(xyzData, "xyz");
+var model = viewer.addModelsAsFrames(xyzData, "xyz");
 viewer.setStyle({}, {stick: {radius: 0.15}, sphere: {scale: 0.3}});
-viewer.zoomTo();
-viewer.rotate(45, "x");
-viewer.rotate(45, "z");
-viewer.animate({loop: "forward", reps: 0, interval: 50});
-viewer.render();
+
+var bondRadii = {
+  H: 0.31,
+  C: 0.76,
+  N: 0.71,
+  O: 0.66,
+  Mg: 1.2,
+  Si: 1.11,
+};
+var bondToleranceScale = 1.15;
+
+function distanceSquared(a, b) {
+  var dx = a.x - b.x;
+  var dy = a.y - b.y;
+  var dz = a.z - b.z;
+  return dx * dx + dy * dy + dz * dz;
+}
+
+function ensureBond(atoms, a, b, order) {
+  if (!atoms[a].bonds.includes(b)) {
+    atoms[a].bonds.push(b);
+    atoms[a].bondOrder.push(order);
+  }
+  if (!atoms[b].bonds.includes(a)) {
+    atoms[b].bonds.push(a);
+    atoms[b].bondOrder.push(order);
+  }
+}
+
+function buildBaseBonds(frameAtoms) {
+  var atoms = frameAtoms.map(function(atom) {
+    return {
+      bonds: (atom.bonds || []).slice(),
+      bondOrder: (atom.bondOrder || []).slice(),
+    };
+  });
+
+  for (var i = 0; i < frameAtoms.length; i += 1) {
+    for (var j = i + 1; j < frameAtoms.length; j += 1) {
+      var radiusI = bondRadii[frameAtoms[i].elem] || 1.0;
+      var radiusJ = bondRadii[frameAtoms[j].elem] || 1.0;
+      var maxBondLength = (radiusI + radiusJ) * bondToleranceScale;
+      if (distanceSquared(frameAtoms[i], frameAtoms[j]) <= maxBondLength * maxBondLength) {
+        ensureBond(atoms, i, j, 1);
+      }
+    }
+  }
+
+  return atoms;
+}
+
+async function initializeViewer() {
+  await model.setFrame(0);
+  var baseAtoms = buildBaseBonds(model.selectedAtoms({}));
+
+  for (var frame = 0; frame < model.getNumFrames(); frame += 1) {
+    await model.setFrame(frame);
+    var frameAtoms = model.selectedAtoms({});
+    for (var i = 0; i < frameAtoms.length; i += 1) {
+      frameAtoms[i].bonds = baseAtoms[i].bonds.slice();
+      frameAtoms[i].bondOrder = baseAtoms[i].bondOrder.slice();
+    }
+  }
+
+  await model.setFrame(0);
+  viewer.zoomTo();
+  viewer.rotate(45, "x");
+  viewer.rotate(45, "z");
+  viewer.animate({loop: "forward", reps: 0, interval: 50});
+  viewer.render();
+}
+
+initializeViewer();
 
 function togglePlay() {
   playing = !playing;
