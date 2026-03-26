@@ -13,8 +13,8 @@ const Navigation = () => {
 
   const navItems = [
     { to: '/', label: 'Home' },
-    { to: '/projects', label: 'Projects' },
     { to: '/skills', label: 'Skills' },
+    { to: '/projects', label: 'Projects' },
     { to: '/contact', label: 'Contact' },
   ];
 
@@ -77,6 +77,10 @@ const Navigation = () => {
           <span>UC Davis</span>
           <span>PhD Candidate</span>
         </div>
+
+        <a href="/CV-nicholas-lundgren.pdf" download className="nav-cv-btn">
+          ↓ Download CV
+        </a>
       </div>
     </nav>
   );
