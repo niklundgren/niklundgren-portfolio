@@ -17,12 +17,22 @@ const Navigation = () => {
         { to: '/skills#visualization', label: 'Data Visualization' },
       ],
     },
-    { to: '/projects', 
+    {
+      to: '/projects',
       label: 'Projects',
       key: 'projects',
       children: [
-        { to: '/projects/phonon-viewer', label: 'Phonon Viewer' },
-        { to: '/projects/cad-designs', label: 'CAD Designs' },
+        { to: '/projects#academic', label: 'Academic Work' },
+        { to: '/projects#code', label: 'Code' },
+        {
+          to: '/projects#other',
+          label: 'Other',
+          key: 'other-projects',
+          children: [
+            { to: '/projects/phonon-viewer', label: 'Phonon Viewer' },
+            { to: '/projects/cad-designs', label: 'CAD Designs' },
+          ],
+        },
       ],
     },
     { to: '/contact', label: 'Contact' },
@@ -33,11 +43,19 @@ const Navigation = () => {
     skills: pathname.startsWith('/skills'),
   }));
 
+  const [openSubMenus, setOpenSubMenus] = useState(() => ({
+    'other-projects': pathname.startsWith('/projects/'),
+  }));
+
   useEffect(() => {
     setOpenMenus((current) => ({
       ...current,
       ...(pathname.startsWith('/projects') ? { projects: true } : {}),
       ...(pathname.startsWith('/skills') ? { skills: true } : {}),
+    }));
+    setOpenSubMenus((current) => ({
+      ...current,
+      ...(pathname.startsWith('/projects/') ? { 'other-projects': true } : {}),
     }));
   }, [pathname]);
 
@@ -49,10 +67,11 @@ const Navigation = () => {
   };
 
   const toggleMenu = (key) => {
-    setOpenMenus((current) => ({
-      ...current,
-      [key]: !current[key],
-    }));
+    setOpenMenus((current) => ({ ...current, [key]: !current[key] }));
+  };
+
+  const toggleSubMenu = (key) => {
+    setOpenSubMenus((current) => ({ ...current, [key]: !current[key] }));
   };
 
   return (
@@ -86,13 +105,40 @@ const Navigation = () => {
               {children && openMenus[key] && (
                 <div className="nav-submenu">
                   {children.map((child) => (
-                    <Link
-                      key={child.to}
-                      to={child.to}
-                      className={`nav-sublink${isActive(child.to) ? ' active' : ''}`}
-                    >
-                      {child.label}
-                    </Link>
+                    <div key={child.to} className="nav-subitem">
+                      <div className="nav-sublink-row">
+                        <Link
+                          to={child.to}
+                          className={`nav-sublink${isActive(child.to) ? ' active' : ''}`}
+                        >
+                          {child.label}
+                        </Link>
+                        {child.children && (
+                          <button
+                            type="button"
+                            className={`nav-sub-expand${openSubMenus[child.key] ? ' open' : ''}`}
+                            onClick={() => toggleSubMenu(child.key)}
+                            aria-label={`Toggle ${child.label} links`}
+                            aria-expanded={openSubMenus[child.key]}
+                          >
+                            ▾
+                          </button>
+                        )}
+                      </div>
+                      {child.children && openSubMenus[child.key] && (
+                        <div className="nav-sub-submenu">
+                          {child.children.map((gc) => (
+                            <Link
+                              key={gc.to}
+                              to={gc.to}
+                              className={`nav-sub-sublink${isActive(gc.to) ? ' active' : ''}`}
+                            >
+                              {gc.label}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   ))}
                 </div>
               )}
