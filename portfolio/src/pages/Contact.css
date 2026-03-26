@@ -1,0 +1,222 @@
+.contact-page {
+  min-height: 100vh;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 4.5rem 3.5rem;
+}
+
+.contact-header {
+  margin-bottom: 3rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.9rem;
+}
+
+.contact-title {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.contact-intro {
+  max-width: 42rem;
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.95fr);
+  gap: 1.25rem;
+}
+
+.contact-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(200, 137, 58, 0.07), transparent 24%),
+    var(--surface);
+  padding: 1.6rem;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.18);
+}
+
+.contact-card-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.7rem;
+}
+
+.contact-card-title {
+  font-family: var(--serif);
+  font-size: 1.9rem;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 0.7rem;
+  color: var(--text);
+}
+
+.contact-card-copy {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin-bottom: 1.4rem;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.contact-field span {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.contact-field-full {
+  grid-column: 1 / -1;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: rgba(12, 11, 9, 0.65);
+  color: var(--text);
+  padding: 0.9rem 1rem;
+  font: inherit;
+  line-height: 1.6;
+}
+
+.contact-field textarea {
+  resize: vertical;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  outline: 1px solid var(--amber);
+  border-color: var(--amber);
+}
+
+.contact-actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-top: 1.3rem;
+}
+
+.contact-primary,
+.contact-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.8rem 1.15rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.84rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.contact-primary {
+  background: var(--amber);
+  color: #1b140d;
+  border-color: var(--amber);
+}
+
+.contact-primary:hover {
+  background: #d89947;
+  color: #1b140d;
+}
+
+.contact-secondary {
+  background: transparent;
+  color: var(--text);
+}
+
+.contact-secondary:hover {
+  border-color: var(--amber);
+}
+
+.contact-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.2rem;
+}
+
+.contact-link-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.95rem 1rem;
+  background: rgba(12, 11, 9, 0.45);
+}
+
+.contact-link-row:hover {
+  border-color: var(--amber);
+  color: var(--text);
+}
+
+.contact-link-name {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.contact-link-value {
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .contact-page {
+    padding: 3rem 1.75rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-title {
+    font-size: 2.25rem;
+  }
+
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
