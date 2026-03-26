@@ -8,17 +8,20 @@ const MODELS = [
     id: 'makeup_brush_holder',
     title: 'Makeup Brush Holder',
     file: '/cad/makeup_brush_holder.stl',
-    eyebrow: 'Desk organizer',
-    summary: 'A brush holder with a straightforward cylindrical layout meant for everyday use and easy cleanup.',
-    body: 'The design focuses on a balance between capacity and print simplicity. Wide openings keep the brushes easy to grab, while the overall form stays rigid enough to print without complicated supports. It is the kind of small utility object where proportion and printability matter more than surface ornament.',
+    eyebrow: 'Vanity Organizer',
+    summary: 'A makeup brush holder with floral detailing.',
+    body: `My wife wanted a place to store her makeup brushes in a new vanity we bought, so I designed this in Onshape with custom dimensions to fit the space precisely.
+    There is a shelf inside to elevate the smaller brushes. To bring some life to it, I added a flower pattern with petals that curve away from the cup to make them pop.
+    This was my first CAD design, and it took about 20 hours, mostly spent fussing over flower variations.`,
   },
   {
     id: 'bratz_stand',
     title: 'Bratz Stand',
     file: '/cad/bratz_stand.stl',
     eyebrow: 'Display fixture',
-    summary: 'A compact display stand sized to hold a Bratz doll upright without hiding the silhouette of the outfit.',
-    body: 'This piece was designed around stability first: a footprint wide enough to stay planted on a shelf, with a simple geometry that prints cleanly and can be reproduced quickly. The goal was to make something functional but visually quiet, so the stand supports the doll without competing with it.',
+    summary: 'Collectible Doll Stand',
+    body: `A friend of ours collects Bratz dolls and wanted a custom support. I figured out how to trace images in CAD for the first time so the lip-shaped base
+    of the display stand perfectly matches the official Bratz logo. The design is visually quiet so it does not compete with the collectible itself.`,
   },
 ];
 
@@ -29,7 +32,7 @@ const CadDesigns = () => {
 
       <header className="project-header">
         <h1 className="project-title">CAD Designs</h1>
-        <p className="project-subtitle">3D models designed for print</p>
+        <p className="project-subtitle">3D Models Designed for Printing</p>
         <div className="project-meta">
           <span className="project-tag">CAD</span>
           <span className="project-tag">3D Printing</span>
