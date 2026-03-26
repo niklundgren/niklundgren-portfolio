@@ -34,6 +34,7 @@
 
 .skills-section {
   margin-bottom: 5rem;
+  scroll-margin-top: 2rem;
 }
 
 .skills-section-intro {
@@ -672,6 +673,12 @@
 }
 
 /* ── Responsive ───────────────────────────── */
+
+@media (max-width: 860px) {
+  .skills-section {
+    scroll-margin-top: 6.5rem;
+  }
+}
 
 @media (max-width: 860px) {
   .skills-page {

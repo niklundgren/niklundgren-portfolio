@@ -30,6 +30,15 @@
   color: var(--text);
 }
 
+.projects-intro {
+  max-width: 58ch;
+  margin-top: 1rem;
+  font-family: var(--mono);
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+  color: var(--text-muted);
+}
+
 /* ── Project list with CSS counter ───────── */
 
 .projects-list {

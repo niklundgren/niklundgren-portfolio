@@ -5,10 +5,11 @@
 }
 
 .cad-story-chunk {
-  --cad-bg:         #0e0c09;
-  --cad-border:     #2d2520;
-  --cad-accent:     #c8893a;
-  --cad-accent-dim: rgba(200, 137, 58, 0.15);
+  --cad-bg:         var(--surface);
+  --cad-surface:    var(--surface-2);
+  --cad-border:     var(--border);
+  --cad-accent:     var(--blue);
+  --cad-accent-dim: var(--blue-dim);
   --cad-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   display: grid;
@@ -36,8 +37,8 @@
   border-radius: 6px;
   overflow: hidden;
   box-shadow:
-    0 0 0 1px rgba(200, 137, 58, 0.06),
-    0 24px 48px rgba(0, 0, 0, 0.5);
+    0 0 0 1px var(--blue-faint),
+    0 18px 36px rgba(15, 23, 42, 0.08);
 }
 
 .cad-story-copy {
@@ -82,7 +83,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.25rem;
-  background: #130f0c;
+  background: var(--cad-surface);
   border-bottom: 1px solid var(--cad-border);
   flex-wrap: wrap;
 }
@@ -92,11 +93,10 @@
   font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--cad-accent);
-  text-shadow: 0 0 8px rgba(200, 137, 58, 0.35);
 }
 
 .cad-divider {
-  color: #2e2420;
+  color: var(--border-hi);
   font-size: var(--fs-lg);
   line-height: 1;
   user-select: none;
@@ -129,19 +129,19 @@
   align-items: center;
   gap: 0.6rem;
   padding: 0.45rem 1.25rem;
-  background: #100e0b;
+  background: var(--cad-surface);
   border-top: 1px solid var(--cad-border);
   font-size: var(--fs-sm);
   letter-spacing: 0.1em;
-  color: #5a5048;
+  color: var(--text-faint);
 }
 
 .cad-hint {
-  color: #3a3530;
+  color: var(--text-muted);
 }
 
 .cad-status-sep {
-  color: #2e2420;
+  color: var(--border-hi);
 }
 
 .stl-viewer-frame {
@@ -155,8 +155,8 @@
   align-items: center;
   justify-content: center;
   background:
-    linear-gradient(180deg, rgba(14, 12, 9, 0.18), rgba(14, 12, 9, 0.5)),
-    radial-gradient(circle at center, rgba(200, 137, 58, 0.1), transparent 55%);
+    linear-gradient(180deg, rgba(248, 250, 252, 0.18), rgba(241, 245, 249, 0.72)),
+    radial-gradient(circle at center, var(--blue-faint), transparent 55%);
   border: 0;
   width: 100%;
   font-family: var(--mono);
@@ -169,9 +169,9 @@
 
 .stl-viewer-activation span {
   padding: 0.65rem 0.9rem;
-  border: 1px solid rgba(200, 137, 58, 0.35);
-  background: rgba(14, 12, 9, 0.72);
-  box-shadow: 0 0 18px rgba(200, 137, 58, 0.15);
+  border: 1px solid var(--blue-dim);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
 .stl-viewer-activation:focus-visible {

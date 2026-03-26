@@ -55,15 +55,15 @@
 }
 
 .project-tag {
-  background-color: transparent;
-  color: var(--text-faint);
+  background-color: var(--surface-2);
+  color: var(--text-muted);
   font-family: var(--mono);
   font-size: var(--fs-xs);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.22rem 0.6rem;
   border-radius: 2px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-hi);
 }
 
 .project-github-link {

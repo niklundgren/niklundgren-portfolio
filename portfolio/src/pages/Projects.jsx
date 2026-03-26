@@ -26,6 +26,10 @@ const Projects = () => {
       <header className="projects-header">
         <p className="projects-eyebrow">Selected Work</p>
         <h1 className="projects-title">Projects</h1>
+        <p className="projects-intro">
+          These are projects I built for fun, but they also highlight some of my
+          technical skills, including 3D design and scripting. Please enjoy.
+        </p>
       </header>
       <div className="projects-list">
         {projects.map((project) => (
