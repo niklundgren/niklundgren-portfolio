@@ -38,7 +38,7 @@ const academicWorks = [
     title: 'κALDo 2.0: Scalable Thermal Transport from First Principles and Machine Learning Potentials',
     venue: 'Computer Physics Communications',
     year: '2026',
-    status: 'Accepted',
+    status: 'Submitted',
     scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ajpztFYAAAAJ&citation_for_view=ajpztFYAAAAJ:f2IySw72cVMC',
   },
   {
@@ -82,7 +82,7 @@ const codingWorks = [
   {
     repo: 'nanotheorygroup/kaldo-examples',
     name: 'κALDo Examples',
-    role: 'Core Developer',
+    role: 'Developer',
     description:
       'Official Jupyter notebook tutorials and example workflows for the κALDo package, covering phonon calculations, thermal transport, and ML potential integration.',
     language: 'Jupyter Notebook',
@@ -93,9 +93,9 @@ const codingWorks = [
   {
     repo: 'niklundgren/nep-xls',
     name: 'nep-xls',
-    role: 'Author',
+    role: 'Sole Developer',
     description:
-      'Data and analysis repository for studying the thermal conductivity of mono- and bilayer silicene using a neuroevolution potential (NEP).',
+      'Data repository to reproduce the neuroevolution potential (NEP) used in my project on the thermal conductivity of mono- and bilayer silicene.',
     language: 'Python',
     license: 'MIT',
     url: 'https://github.com/niklundgren/nep-xls',

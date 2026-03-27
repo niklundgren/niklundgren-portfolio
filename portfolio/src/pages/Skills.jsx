@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import './Skills.css';
@@ -17,13 +17,15 @@ const software = [
 
 const figures = [
   { src: '/figures/si-xls-rmse.png', num: 'Fig. 01', label: 'Silicon MLIP Parity Plot', caption: 'Force from the machine learning interatomic potential I trained vs. DFT reference data across silicon phases.', span: 'wide' },
-  { src: '/figures/sige-diffusivity.png', num: 'Fig. 02', label: 'SiGe Diffusivity', caption: 'Thermal diffusivity of amorphous silicon–germanium alloys. The large shaded areas represent the mean value of specific groups of frequencies.', span: 'wide' },
-  { src: '/figures/sige-sizeconverge.png', num: 'Fig. 03', label: 'SiGe Size Convergence', caption: 'Convergence of thermal properties with supercell size in amorphous SiGe. The annotations point out how the difference accumulates across specific frequency ranges', span: 'standard' },
-  { src: '/figures/mgo-disp.png', num: 'Fig. 04', label: 'MgO Phonon Dispersion', caption: 'Phonon Dispersion for Magnesium Oxide that shows off one of the features I added to kALDo, the non-analytical correction. In real materials with a dipole, the transverse and longitudinal optical modes typically split near Gamma, demonstrated by the red lines.', span: 'wide' },
+  { src: '/figures/rad_ang.png', num: 'Fig. 02', label: 'Amorphous Silicon Structural Convergence', caption: 'Radial and angular distribution functions of amorphous silicon across three size scales. The radial distribution agrees well with neutron scattering experiments and helps show model convergence.', span: 'wide' },
+  { src: '/figures/xls-dispersion.png', num: 'Fig. 03', label: 'Silicene Phonon Population Comparison', caption: 'A dense comparison of phonon populations between molecular dynamics and lattice dynamics for mono- and bilayer silicene. The molecular dynamics populations are red-shifted by finite-temperature effects, while bilayer silicene shows a compressed dispersion with optical shear modes near 4 THz.', span: 'wide' },
+  { src: '/figures/sige-sizeconverge.png', num: 'Fig. 04', label: 'SiGe Size Convergence', caption: 'Convergence of thermal properties with supercell size in amorphous SiGe. The annotations point out how the difference accumulates across specific frequency ranges', span: 'standard' },
   { src: '/figures/sige-velocities.png', num: 'Fig. 05', label: 'SiGe Phonon Velocities', caption: 'Effects of alloy concentration in the generalized group velocities of phonon modes. The 2D grid represents the effects of the interactions with each pair of modes. Generalized quantities are the cornerstone of QHGK, where we lose focus on individual modes, and instead couple them.', span: 'standard' },
-  { src: '/figures/mgo-props.png', num: 'Fig. 06', label: 'MgO Thermal Properties', caption: 'Phonon properties of MgO with and without the NAC correction. Adding the correction decreases optical modes group velocities and lower the thermal conductivity.', span: 'wide' },
-  { src: '/figures/si-bls-strain.png', num: 'Fig. 07', label: 'Bilayer Silicene Under Strain', caption: 'Changes of the phonons in bilayer silicene under applied biaxial strain.', span: 'tall' },
-  { src: '/figures/si-strain-k.png', num: 'Fig. 08', label: 'Silicon Thermal Conductivity vs. Strain', caption: 'Demonstrating that monolayer silicene has divergent thermal conductivity under strain, in both EMD and ALD.', span: 'tall' },
+  { src: '/figures/sige-diffusivity.png', num: 'Fig. 06', label: 'SiGe Diffusivity', caption: 'Thermal diffusivity of amorphous silicon–germanium alloys. The large shaded areas represent the mean value of specific groups of frequencies.', span: 'wide' },
+  { src: '/figures/mgo-disp.png', num: 'Fig. 07', label: 'MgO Phonon Dispersion', caption: 'Phonon Dispersion for Magnesium Oxide that shows off one of the features I added to kALDo, the non-analytical correction. In real materials with a dipole, the transverse and longitudinal optical modes typically split near Gamma, demonstrated by the red lines.', span: 'wide' },
+  { src: '/figures/mgo-props.png', num: 'Fig. 08', label: 'MgO Thermal Properties', caption: 'Phonon properties of MgO with and without the NAC correction. Adding the correction decreases optical modes group velocities and lower the thermal conductivity.', span: 'wide' },
+  { src: '/figures/si-bls-strain.png', num: 'Fig. 09', label: 'Bilayer Silicene Under Strain', caption: 'Changes of the phonons in bilayer silicene under applied biaxial strain.', span: 'tall' },
+  { src: '/figures/si-strain-k.png', num: 'Fig. 10', label: 'Silicon Thermal Conductivity vs. Strain', caption: 'Demonstrating that monolayer silicene has divergent thermal conductivity under strain, in both EMD and ALD.', span: 'tall' },
 ];
 
 /* ── Writing section data ─────────────────────── */
@@ -74,12 +76,12 @@ const WRITING_SECTIONS = [
     subtitle: 'Dispersion, group velocity, and speed of sound',
     preview: {
       type: 'fig',
-      src: '/XI-dispersion.png',
+      src: '/figures/XI-dispersion.png',
       alt: 'Phonon dispersion',
     },
     content: [
       { type: 'p', text: 'There are $3N_{\\text{atoms}}$ degrees of freedom in the unit cell each corresponding to a phonon mode, three of which are equivalent to translation of that unit cell along a direction. These special modes are named acoustic modes because they can be excited through sound waves and the remainder we call optical modes. When $\\mathbf{k}=\\mathbf{0}$, the infinite-wavelength acoustic modes become translation of the entire system along an axis which requires zero energy by PBC. Optical modes at $\\mathbf{k}=\\mathbf{0}$ still result in relative atomic motion and thus have finite energy. As we explore the rest of $\\mathbf{k}$-space, every lattice wave is still movement along one of the degrees of freedom. Tracking the energy relative to $\\mathbf{k}$ can be plotted in a phonon dispersion where a single band represents the excited degree of freedom. Dispersion relations are typically plotted along high symmetry points of the crystal, shown below for ice XI.' },
-      { type: 'fig', src: '/XI-dispersion.png', alt: 'Phonon dispersion of ice XI', caption: 'The low frequency region for the phonon dispersion of ice XI using three interatomic potentials.[1,2,3] The speed of sound is calculated for each potential using a linear fit near \u0393 to find the slope, which corresponds to the group velocity. The values in the table represent an average over the slope in three directions (towards the special points M, K and A). These values were calculated within kALDo.[4]' },
+      { type: 'fig', src: '/figures/XI-dispersion.png', alt: 'Phonon dispersion of ice XI', caption: 'The low frequency region for the phonon dispersion of ice XI using three interatomic potentials.[1,2,3] The speed of sound is calculated for each potential using a linear fit near \u0393 to find the slope, which corresponds to the group velocity. The values in the table represent an average over the slope in three directions (towards the special points M, K and A). These values were calculated within kALDo.[4]' },
       { type: 'p', text: 'In a dispersive medium, the group velocity of a wave can be calculated by the derivative of its frequency with respect to its wave vector, $v_g = \\partial\\omega/\\partial k$. Applying the relevant derivative to the acoustic modes as their wavevector $\\mathbf{k}$ approaches zero yields the material\'s speed of sound. We can demonstrate this by averaging the derivative of the acoustic branches in three directions ($M, K, A$) for the transverse and longitudinal polarizations.' },
       { type: 'p', text: 'Experimentally determining the speed of sound requires interaction with waves traveling at kilometers per second which severely limits the number of detection methods. Brillouin spectroscopy and piezoelectric transducers (PZT) are two popular choices, but to our knowledge there have not been any such experiments with ice XI. We contrast our results against PZT measurements for ice Ih which features oxygen arranged in the same framework but lacks the proton ordering of ice XI. The neural network potential (NNP)[1] and our SNAP potential[3] get within 10% of both experimental velocities. Overestimation by SNAP on $v_{\\text{trans}}$ likely falls less than 10% when correcting for the difference in ice systems. Given that more well-ordered systems tend to higher group velocities,[5] it stands to reason the true experimental comparisons are slightly higher than presented here, implying our machine learning potentials may be a little soft on average.' },
       { type: 'p', text: 'Data from the force-matching potential (FMP) fares less well. The FMP has successfully been used in structural studies in the past[2] but is likely not a good candidate for lattice dynamics calculations of amorphous ice as the speed of sound is close to an order of magnitude different than experimental values.' },
@@ -282,9 +284,27 @@ const ContentBlock = ({ block }) => {
 };
 
 const WritingPanel = ({ section, onClose }) => {
+  const panelRef = useRef(null);
+
   useEffect(() => {
     if (!section) return;
-    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const handleKey = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+
+      e.preventDefault();
+      const panel = panelRef.current;
+      if (!panel) return;
+
+      const scrollStep = Math.max(120, Math.round(panel.clientHeight * 0.12));
+      panel.scrollBy({
+        top: e.key === 'ArrowDown' ? scrollStep : -scrollStep,
+        behavior: 'smooth',
+      });
+    };
     document.addEventListener('keydown', handleKey);
     document.body.style.overflow = 'hidden';
     return () => {
@@ -298,7 +318,13 @@ const WritingPanel = ({ section, onClose }) => {
   return (
     <>
       <div className="writing-panel-backdrop" onClick={onClose} />
-      <div className="writing-panel" role="dialog" aria-modal="true" aria-label={section.title}>
+      <div
+        ref={panelRef}
+        className="writing-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label={section.title}
+      >
         <div className="writing-panel-header">
           <div>
             <p className="writing-panel-eyebrow">Technical Writing</p>
@@ -333,7 +359,7 @@ const FigureCard = ({ figure, onClick }) => (
   <button
     type="button"
     className={`skills-figure-card is-${figure.span}`}
-    onClick={() => onClick(figure)}
+    onClick={onClick}
     aria-label={`Open ${figure.label}`}
   >
     <div className="skills-figure-image-wrap">
@@ -347,27 +373,52 @@ const FigureCard = ({ figure, onClick }) => (
   </button>
 );
 
-const FigureLightbox = ({ figure, onClose }) => {
+const FigureLightbox = ({ figure, onClose, onPrevious, onNext }) => {
   useEffect(() => {
     if (!figure) return;
-    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const handleKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') onPrevious();
+      if (e.key === 'ArrowRight') onNext();
+    };
     document.addEventListener('keydown', handleKey);
     document.body.style.overflow = 'hidden';
     return () => {
       document.removeEventListener('keydown', handleKey);
       document.body.style.overflow = '';
     };
-  }, [figure, onClose]);
+  }, [figure, onClose, onPrevious, onNext]);
 
   if (!figure) return null;
 
   return (
     <>
       <div className="skills-lightbox-backdrop" onClick={onClose} />
-      <div className="skills-lightbox" role="dialog" aria-modal="true" aria-label={figure.label}>
+      <div
+        className={`skills-lightbox${figure.span === 'tall' ? ' is-tall' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={figure.label}
+      >
         <CloseButton className="skills-lightbox-close" onClick={onClose} aria-label="Close figure" />
         <div className="skills-lightbox-stage">
+          <button
+            type="button"
+            className="skills-lightbox-nav skills-lightbox-nav-prev"
+            onClick={onPrevious}
+            aria-label="Previous figure"
+          >
+            <span aria-hidden="true">&#x2039;</span>
+          </button>
           <img src={figure.src} alt={figure.label} className="skills-lightbox-image" />
+          <button
+            type="button"
+            className="skills-lightbox-nav skills-lightbox-nav-next"
+            onClick={onNext}
+            aria-label="Next figure"
+          >
+            <span aria-hidden="true">&#x203A;</span>
+          </button>
         </div>
         <aside className="skills-lightbox-copy">
           <p className="skills-lightbox-eyebrow">Research Figure</p>
@@ -384,9 +435,22 @@ const FigureLightbox = ({ figure, onClose }) => {
 
 const Skills = () => {
   const [activeSection, setActiveSection] = useState(null);
-  const [activeFigure, setActiveFigure] = useState(null);
+  const [activeFigureIndex, setActiveFigureIndex] = useState(null);
   const closePanel = useCallback(() => setActiveSection(null), []);
-  const closeFigure = useCallback(() => setActiveFigure(null), []);
+  const closeFigure = useCallback(() => setActiveFigureIndex(null), []);
+  const showPreviousFigure = useCallback(() => {
+    setActiveFigureIndex((currentIndex) => {
+      if (currentIndex === null) return currentIndex;
+      return (currentIndex - 1 + figures.length) % figures.length;
+    });
+  }, []);
+  const showNextFigure = useCallback(() => {
+    setActiveFigureIndex((currentIndex) => {
+      if (currentIndex === null) return currentIndex;
+      return (currentIndex + 1) % figures.length;
+    });
+  }, []);
+  const activeFigure = activeFigureIndex === null ? null : figures[activeFigureIndex];
 
   return (
     <div className="skills-page">
@@ -455,16 +519,31 @@ const Skills = () => {
           I hope to show that I enjoy making high quality figures scientific figures that communicate
           complex ideas in dense packages. I mostly use Python to create any of the plots, while diagrams,
           models, and, occasionally, annotations are generated by Inkscape (vector graphics software).
+          <br></br>
+          <br></br>
+        </p>
+        <p className="skills-eyebrow">
+          Click on a figure to zoom in, click the left/right arrow or hit the left/right key on your 
+          keyboard to flip through them. Hit "esc" key to exit.
         </p>
         <div className="skills-figure-grid" aria-label="Research figure gallery">
-          {figures.map((figure) => (
-            <FigureCard key={figure.src} figure={figure} onClick={setActiveFigure} />
+          {figures.map((figure, index) => (
+            <FigureCard
+              key={figure.src}
+              figure={figure}
+              onClick={() => setActiveFigureIndex(index)}
+            />
           ))}
         </div>
       </section>
 
       <WritingPanel section={activeSection} onClose={closePanel} />
-      <FigureLightbox figure={activeFigure} onClose={closeFigure} />
+      <FigureLightbox
+        figure={activeFigure}
+        onClose={closeFigure}
+        onPrevious={showPreviousFigure}
+        onNext={showNextFigure}
+      />
 
     </div>
   );
