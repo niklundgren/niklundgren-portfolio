@@ -3,8 +3,6 @@ import './Contact.css';
 
 const CONTACT = {
   email: 'nwlundgren@ucdavis.edu',
-  phoneLabel: '(805) 433-5953',
-  phoneHref: 'tel:+18054335953',
   linkedin: 'https://linkedin.com/in/niklundgren',
   scholar: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
 };
@@ -117,10 +115,6 @@ const Contact = () => {
             >
               <span className="contact-link-name">Google Scholar</span>
               <span className="contact-link-value">Search profile and publications</span>
-            </a>
-            <a className="contact-link-row" href={CONTACT.phoneHref}>
-              <span className="contact-link-name">Phone</span>
-              <span className="contact-link-value">{CONTACT.phoneLabel}</span>
             </a>
           </div>
         </div>
