@@ -26,7 +26,7 @@ const Home = () => {
         </p>
         <div className="hero-ctas">
           <a
-            href="/CV-nicholas-lundgren.pdf"
+            href="/Nicholas_Lundgren_CV.pdf"
             download
             className="hero-cta-btn hero-cta-primary"
           >

@@ -160,7 +160,7 @@ const Navigation = () => {
           ))}
         </div>
 
-        <a href="/CV-nicholas-lundgren.pdf" download className="nav-cv-btn">
+        <a href="/Nicholas_Lundgren_CV.pdf" download className="nav-cv-btn">
           ↓ Download CV
         </a>
       </div>

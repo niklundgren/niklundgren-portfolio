@@ -2,6 +2,22 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Projects.css';
 import SectionDivider from '../components/SectionDivider';
+import scholarData from '../data/scholar.json';
+
+function getCitationKey(url) {
+  try {
+    return new URL(url).searchParams.get('citation_for_view');
+  } catch {
+    return null;
+  }
+}
+
+const citationMap = Object.fromEntries(
+  scholarData.publications
+    .filter(p => p.link)
+    .map(p => [getCitationKey(p.link), p.cited_by])
+    .filter(([key]) => key != null)
+);
 
 // Renders a name string that may contain 'κ' using the serif kappa class
 function renderName(name) {
@@ -19,12 +35,11 @@ function renderName(name) {
 const academicWorks = [
   {
     type: 'Paper',
-    title: 'κALDo 2.0: Anharmonic Lattice Dynamics at Scale',
+    title: 'κALDo 2.0: Scalable Thermal Transport from First Principles and Machine Learning Potentials',
     venue: 'Computer Physics Communications',
     year: '2026',
     status: 'Accepted',
-    citations: null, // update from Scholar once published
-    scholarUrl: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ajpztFYAAAAJ&citation_for_view=ajpztFYAAAAJ:f2IySw72cVMC',
   },
   {
     type: 'Poster',
@@ -32,17 +47,15 @@ const academicWorks = [
     venue: 'APS March Meeting',
     year: '2025',
     status: null,
-    citations: null,
     scholarUrl: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
   },
   {
     type: 'Paper',
-    title: 'Mode Localization in Amorphous Alloys',
+    title: 'Mode localization and suppressed heat transport in amorphous alloys',
     venue: 'Physical Review B',
     year: '2021',
     status: null,
-    citations: null, // update from Scholar
-    scholarUrl: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ajpztFYAAAAJ&citation_for_view=ajpztFYAAAAJ:2osOgNQ5qMEC',
   },
   {
     type: 'Paper',
@@ -50,8 +63,7 @@ const academicWorks = [
     venue: 'Journal of Applied Physics',
     year: '2020',
     status: null,
-    citations: 82,
-    scholarUrl: 'https://scholar.google.com/citations?user=ajpztFYAAAAJ&hl=en',
+    scholarUrl: 'https://scholar.google.com/citations?view_op=view_citation&hl=en&user=ajpztFYAAAAJ&citation_for_view=ajpztFYAAAAJ:u5HHmVD_uO8C',
   },
 ];
 
@@ -183,9 +195,12 @@ const Projects = () => {
               </div>
               <p className="academic-venue">
                 {work.venue}
-                {work.citations != null && (
-                  <span className="academic-citations"> · {work.citations} citations</span>
-                )}
+                {(() => {
+                  const count = citationMap[getCitationKey(work.scholarUrl)];
+                  return count != null && count > 0
+                    ? <span className="academic-citations"> · {count} citations</span>
+                    : null;
+                })()}
               </p>
             </div>
           ))}
