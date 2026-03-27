@@ -80,13 +80,12 @@ const TeachingResources = () => {
         <h2>Overview</h2>
         <p>
           I have taught chemistry for more than six years, from Fall 2020 through Winter 2026,
-          across 10 distinct courses and 16 term offerings. That work spans foundational general
+          across 10 distinct courses and 16 academic quarters. That work spans foundational general
           chemistry, upper-division organic chemistry, and graduate spectroscopy.
         </p>
         <p>
-          My teaching has focused on helping students connect formal theory to problem solving:
-          using quantum ideas to explain bonding, using thermodynamics and kinetics to reason about
-          chemical behavior, and using mechanism- and spectroscopy-based thinking to interpret structure.
+          My teaching has focused on helping students connect formal theory to problem solving, my discussion
+          lectures were primarily spent explaining a concept and then demonstrating it on a problem set.
         </p>
       </section>
 
@@ -140,6 +139,7 @@ const TeachingResources = () => {
         </div>
       </section>
 
+      {/*
       <section className="project-section">
         <h2>Teaching Approach</h2>
         <p>
@@ -153,6 +153,7 @@ const TeachingResources = () => {
           in organic chemistry, and the relationship between symmetry, structure, and spectra.
         </p>
       </section>
+      */}
     </div>
   );
 };

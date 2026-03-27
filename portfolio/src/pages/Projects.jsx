@@ -146,11 +146,13 @@ const Projects = () => {
   return (
     <div className="projects-page">
       <header className="projects-header">
-        <p className="projects-eyebrow">Selected Work</p>
+        <p className="projects-eyebrow">The Work</p>
         <h1 className="projects-title">Projects</h1>
         <p className="projects-intro">
-          These are projects I built for fun, but they also highlight some of my
-          technical skills, including 3D design and scripting. Please enjoy.
+          These are some of the things I worked on while in my Ph.D. program. They highlight the multi-faceted
+          skill that I picked up. Academic Work serves to highlight my writing and research, while the Code 
+          section highlights some of my Python development. The "Other" section show off some technical skills
+          that I gained for fun in my spare-time like 3D modeling! Please enjoy.
         </p>
       </header>
 

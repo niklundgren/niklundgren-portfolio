@@ -251,9 +251,10 @@
 
 /* ── Responsive ───────────────────────────── */
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .navigation {
     width: 100%;
+    max-width: 100%;
     min-height: unset;
     height: auto;
     border-right: none;
@@ -355,11 +356,5 @@
     width: 100%;
     padding: 0.25rem 0 0.5rem 1rem;
     border-bottom: none;
-  }
-}
-
-@media (max-width: 860px) {
-  .app {
-    flex-direction: column;
   }
 }

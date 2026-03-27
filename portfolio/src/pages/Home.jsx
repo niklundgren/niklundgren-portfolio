@@ -13,7 +13,7 @@ const Home = () => {
           alt="Headshot of Nicholas W. Lundgren"
         />
         <div className="hero-identity">
-          <p className="hero-eyebrow">Computational Physics Engineer · PhD Candidate</p>
+          <p className="hero-eyebrow"> Computational Chemical Physicist · PhD Candidate</p>
           <h1 className="hero-title">Nicholas<br />W. Lundgren</h1>
         </div>
       </div>

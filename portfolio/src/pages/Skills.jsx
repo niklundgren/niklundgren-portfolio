@@ -16,14 +16,14 @@ const software = [
 ];
 
 const figures = [
-  { src: '/figures/mgo-disp.png', num: 'Fig. 01', label: 'MgO Phonon Dispersion', caption: 'Phonon dispersion relations for magnesium oxide computed via lattice dynamics.', span: 'wide' },
-  { src: '/figures/mgo-props.png', num: 'Fig. 02', label: 'MgO Thermal Properties', caption: 'Thermal conductivity and heat capacity of MgO as a function of temperature.', span: 'wide' },
-  { src: '/figures/si-bls-strain.png', num: 'Fig. 03', label: 'Bilayer Silicene Under Strain', caption: 'Structural and electronic properties of bilayer silicene under applied biaxial strain.', span: 'tall' },
-  { src: '/figures/si-strain-k.png', num: 'Fig. 04', label: 'Silicon Thermal Conductivity vs. Strain', caption: 'Dependence of thermal conductivity on strain for silicon phases.', span: 'tall' },
-  { src: '/figures/si-xls-rmse.png', num: 'Fig. 05', label: 'Silicon MLIP Parity Plot', caption: 'Force from machine learning interatomic potential vs. DFT reference across silicon phases.', span: 'wide' },
-  { src: '/figures/sige-diffusivity.png', num: 'Fig. 06', label: 'SiGe Diffusivity', caption: 'Thermal diffusivity of amorphous silicon–germanium alloys.', span: 'wide' },
-  { src: '/figures/sige-sizeconverge.png', num: 'Fig. 07', label: 'SiGe Size Convergence', caption: 'Convergence of thermal properties with supercell size in amorphous SiGe.', span: 'standard' },
-  { src: '/figures/sige-velocities.png', num: 'Fig. 08', label: 'SiGe Phonon Velocities', caption: 'Phonon group velocities in amorphous SiGe alloys.', span: 'standard' },
+  { src: '/figures/si-xls-rmse.png', num: 'Fig. 01', label: 'Silicon MLIP Parity Plot', caption: 'Force from the machine learning interatomic potential I trained vs. DFT reference data across silicon phases.', span: 'wide' },
+  { src: '/figures/sige-diffusivity.png', num: 'Fig. 02', label: 'SiGe Diffusivity', caption: 'Thermal diffusivity of amorphous silicon–germanium alloys. The large shaded areas represent the mean value of specific groups of frequencies.', span: 'wide' },
+  { src: '/figures/sige-sizeconverge.png', num: 'Fig. 03', label: 'SiGe Size Convergence', caption: 'Convergence of thermal properties with supercell size in amorphous SiGe. The annotations point out how the difference accumulates across specific frequency ranges', span: 'standard' },
+  { src: '/figures/mgo-disp.png', num: 'Fig. 04', label: 'MgO Phonon Dispersion', caption: 'Phonon Dispersion for Magnesium Oxide that shows off one of the features I added to kALDo, the non-analytical correction. In real materials with a dipole, the transverse and longitudinal optical modes typically split near Gamma, demonstrated by the red lines.', span: 'wide' },
+  { src: '/figures/sige-velocities.png', num: 'Fig. 05', label: 'SiGe Phonon Velocities', caption: 'Effects of alloy concentration in the generalized group velocities of phonon modes. The 2D grid represents the effects of the interactions with each pair of modes. Generalized quantities are the cornerstone of QHGK, where we lose focus on individual modes, and instead couple them.', span: 'standard' },
+  { src: '/figures/mgo-props.png', num: 'Fig. 06', label: 'MgO Thermal Properties', caption: 'Phonon properties of MgO with and without the NAC correction. Adding the correction decreases optical modes group velocities and lower the thermal conductivity.', span: 'wide' },
+  { src: '/figures/si-bls-strain.png', num: 'Fig. 07', label: 'Bilayer Silicene Under Strain', caption: 'Changes of the phonons in bilayer silicene under applied biaxial strain.', span: 'tall' },
+  { src: '/figures/si-strain-k.png', num: 'Fig. 08', label: 'Silicon Thermal Conductivity vs. Strain', caption: 'Demonstrating that monolayer silicene has divergent thermal conductivity under strain, in both EMD and ALD.', span: 'tall' },
 ];
 
 /* ── Writing section data ─────────────────────── */
@@ -392,13 +392,20 @@ const Skills = () => {
     <div className="skills-page">
 
       <header className="skills-header">
-        <p className="skills-eyebrow">Skills &amp; Expertise</p>
-        <h1 className="skills-title">The Work</h1>
-      </header>
-
+       <p className="skills-eyebrow">The Learning</p> 
+       <h1 className="skills-title">Skills &amp; Expertise</h1>
+      </header> 
+      
       {/* \u2500\u2500 \u00a7 00 Software \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */}
       <section className="skills-section" id="software">
         <SectionDivider num="00" title="Scientific &amp; Technical Software" />
+        <p className="skills-section-intro">
+            These are a few of the more recognizable scientific software that I use. Lammps
+            and GPUMD are both molecular dynamics engines. The NEP executable from GPUMD is what I used to 
+            train NEP-XLS (see projects). Quantum Espresso is my preferred DFT code, and kALDo is the open-source
+            lattice dynamics code I used for phonon calculations. ASE is a Python library that is a sort of swiss-army knife
+            for anyone doing computational chemical physics.
+        </p>
         <div className="software-strip">
           {software.map((s) => (
             <a
@@ -419,10 +426,10 @@ const Skills = () => {
       <section className="skills-section" id="writing">
         <SectionDivider num="01" title="Technical Writing" />
         <p className="skills-section-intro">
-          During my Ph.D., I've been frustrated by many textbooks that try to explain dense physics concepts while doing the bare minimum to explain the physical
-          implications of the equations they show. It's made me passionate about thorough, well-explained technical writing. The samples below were originally written
-          for my own notes, and then later reformed to help undergraduates in my group connect with the concepts of lattice dynamics. They represent my commitment to
-          transforming complex equations into real understanding.
+          Throughout my Ph.D., I’ve developed a deep appreciation for the 'connective tissue' between abstract math 
+          and the physical reality. I believe technical writing reaches its full potential when it goes beyond the derivation 
+          to explore the physical implications of every variable and operation. The samples below were originally written for an assignment
+          that my advisor (noted for his exacting standards) praised as "excellent" for their accuracy and transparency.
         </p>
         <p className="writing-subsection-label">Example: Explaining Lattice Dynamics and Thermal Transport</p>
         <p className="skills-section-intro">
@@ -444,7 +451,10 @@ const Skills = () => {
         <p className="skills-section-intro">
           Research figures from published and in-progress work on lattice dynamics,
           thermal transport, and machine learning interatomic potentials. Open any
-          panel for a closer reading of the visual story.
+          panel for a closer reading. While more complete analysis is available in my published work
+          I hope to show that I enjoy making high quality figures scientific figures that communicate
+          complex ideas in dense packages. I mostly use Python to create any of the plots, while diagrams,
+          models, and, occasionally, annotations are generated by Inkscape (vector graphics software).
         </p>
         <div className="skills-figure-grid" aria-label="Research figure gallery">
           {figures.map((figure) => (
