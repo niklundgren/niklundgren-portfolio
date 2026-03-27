@@ -108,6 +108,14 @@ const funProjects = [
     description:
       'A collection of 3D-printable designs, viewable interactively in the browser via a zero-dependency WebGL STL renderer.',
   },
+  {
+    id: 'teaching-resources',
+    title: 'Teaching Resources',
+    subtitle: 'Chemistry instruction and course support materials',
+    tags: ['Teaching', 'Chemistry', 'Course Materials'],
+    description:
+      'Six-plus years of chemistry teaching across general chemistry, organic chemistry, and spectroscopy, organized into a course history and resource archive.',
+  },
 ];
 
 // ── Component ──────────────────────────────────────────────────

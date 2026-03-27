@@ -7,6 +7,7 @@ import Skills from './pages/Skills'
 import Contact from './pages/Contact'
 import PhononViewer from './pages/projects/PhononViewer'
 import CadDesigns from './pages/projects/CadDesigns'
+import TeachingResources from './pages/projects/TeachingResources'
 import './App.css'
 
 function HashScrollManager() {
@@ -47,6 +48,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/phonon-viewer" element={<PhononViewer />} />
         <Route path="/projects/cad-designs" element={<CadDesigns />} />
+        <Route path="/projects/teaching-resources" element={<TeachingResources />} />
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

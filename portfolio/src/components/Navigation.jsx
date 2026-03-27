@@ -31,6 +31,7 @@ const Navigation = () => {
           children: [
             { to: '/projects/phonon-viewer', label: 'Phonon Viewer' },
             { to: '/projects/cad-designs', label: 'CAD Designs' },
+            { to: '/projects/teaching-resources', label: 'Teaching Resources' },
           ],
         },
       ],
