@@ -280,6 +280,9 @@
 .skills-lightbox-stage {
   min-width: 0;
   min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -293,6 +296,19 @@
   object-fit: contain;
   max-height: calc(92vh - 2.5rem);
   background: var(--surface-2);
+}
+
+.skills-lightbox.is-tall {
+  grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr);
+}
+
+.skills-lightbox.is-tall .skills-lightbox-stage {
+  padding: 0.75rem 1rem;
+}
+
+.skills-lightbox.is-tall .skills-lightbox-image {
+  width: auto;
+  max-width: 100%;
 }
 
 .skills-lightbox-copy {

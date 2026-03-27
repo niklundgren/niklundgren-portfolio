@@ -366,7 +366,12 @@ const FigureLightbox = ({ figure, onClose }) => {
   return (
     <>
       <div className="skills-lightbox-backdrop" onClick={onClose} />
-      <div className="skills-lightbox" role="dialog" aria-modal="true" aria-label={figure.label}>
+      <div
+        className={`skills-lightbox${figure.span === 'tall' ? ' is-tall' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={figure.label}
+      >
         <CloseButton className="skills-lightbox-close" onClick={onClose} aria-label="Close figure" />
         <div className="skills-lightbox-stage">
           <img src={figure.src} alt={figure.label} className="skills-lightbox-image" />
