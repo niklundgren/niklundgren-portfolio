@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import './Skills.css';
@@ -284,9 +284,27 @@ const ContentBlock = ({ block }) => {
 };
 
 const WritingPanel = ({ section, onClose }) => {
+  const panelRef = useRef(null);
+
   useEffect(() => {
     if (!section) return;
-    const handleKey = (e) => { if (e.key === 'Escape') onClose(); };
+    const handleKey = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key !== 'ArrowUp' && e.key !== 'ArrowDown') return;
+
+      e.preventDefault();
+      const panel = panelRef.current;
+      if (!panel) return;
+
+      const scrollStep = Math.max(120, Math.round(panel.clientHeight * 0.12));
+      panel.scrollBy({
+        top: e.key === 'ArrowDown' ? scrollStep : -scrollStep,
+        behavior: 'smooth',
+      });
+    };
     document.addEventListener('keydown', handleKey);
     document.body.style.overflow = 'hidden';
     return () => {
@@ -300,7 +318,13 @@ const WritingPanel = ({ section, onClose }) => {
   return (
     <>
       <div className="writing-panel-backdrop" onClick={onClose} />
-      <div className="writing-panel" role="dialog" aria-modal="true" aria-label={section.title}>
+      <div
+        ref={panelRef}
+        className="writing-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label={section.title}
+      >
         <div className="writing-panel-header">
           <div>
             <p className="writing-panel-eyebrow">Technical Writing</p>
