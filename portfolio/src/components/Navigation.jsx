@@ -4,6 +4,7 @@ import './Navigation.css';
 
 const Navigation = () => {
   const { pathname, hash } = useLocation();
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const navItems = [
     { to: '/', label: 'Home' },
@@ -31,6 +32,7 @@ const Navigation = () => {
           children: [
             { to: '/projects/phonon-viewer', label: 'Phonon Viewer' },
             { to: '/projects/cad-designs', label: 'CAD Designs' },
+            { to: '/projects/teaching-resources', label: 'Teaching Resources' },
           ],
         },
       ],
@@ -57,6 +59,7 @@ const Navigation = () => {
       ...current,
       ...(pathname.startsWith('/projects/') ? { 'other-projects': true } : {}),
     }));
+    setIsMobileOpen(false);
   }, [pathname]);
 
   const isActive = (to) => {
@@ -75,11 +78,22 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navigation">
+    <nav className={`navigation${isMobileOpen ? ' is-open' : ''}`}>
       <div className="nav-container">
-        <div className="nav-brand">
-          <span className="nav-monogram">N.W.L.</span>
-          <div className="nav-brand-rule" />
+        <div className="nav-top-row">
+          <div className="nav-brand">
+            <span className="nav-monogram">N.W.L.</span>
+            <div className="nav-brand-rule" />
+          </div>
+          <button
+            type="button"
+            className="nav-hamburger"
+            onClick={() => setIsMobileOpen((o) => !o)}
+            aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileOpen}
+          >
+            {isMobileOpen ? '✕' : '☰'}
+          </button>
         </div>
 
         <div className="nav-menu">

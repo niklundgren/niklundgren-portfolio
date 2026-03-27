@@ -79,6 +79,7 @@ body {
   min-height: 100vh;
   background-color: var(--bg);
   font-family: var(--serif);
+  overflow-x: hidden;
 }
 
 p,
@@ -88,6 +89,7 @@ li {
 
 #root {
   min-height: 100vh;
+  max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -134,6 +136,12 @@ button:focus-visible {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border-hi); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+/* ── Prevent KaTeX display equations from causing horizontal scroll ── */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 
 /* ── Greek character fallback ─────────────── */
 /* JetBrains Mono doesn't include Greek — use Fraunces for κ */

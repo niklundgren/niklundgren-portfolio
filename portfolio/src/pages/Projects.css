@@ -28,6 +28,8 @@
   font-weight: 300;
   font-style: italic;
   color: var(--text);
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .projects-intro {
@@ -106,6 +108,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
   margin-top: 0.3rem;
 }
 
@@ -117,6 +120,9 @@
   color: var(--text);
   line-height: var(--lh-snug);
   margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .academic-venue {
@@ -187,6 +193,9 @@
   color: var(--text);
   letter-spacing: -0.02em;
   line-height: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .coding-role {
@@ -314,6 +323,7 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
   margin-top: 0.3rem;
 }
 
@@ -325,6 +335,9 @@
   color: var(--text);
   line-height: var(--lh-snug);
   margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: normal;
 }
 
 .other-subtitle {
@@ -333,6 +346,7 @@
   color: var(--text-faint);
   letter-spacing: 0.04em;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .other-desc {
@@ -378,6 +392,12 @@
 
 /* ── Responsive ───────────────────────────── */
 
+@media (max-width: 860px) {
+  .projects-page {
+    padding: 3.5rem 2.25rem;
+  }
+}
+
 @media (max-width: 600px) {
   .projects-page {
     padding: 3rem 1.5rem;
@@ -395,5 +415,12 @@
   .academic-title-row {
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  .coding-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }

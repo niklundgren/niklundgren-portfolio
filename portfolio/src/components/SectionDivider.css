@@ -1,6 +1,7 @@
 .section-divider {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -12,11 +13,23 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--amber);
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .section-divider-rule {
   flex: 1;
+  min-width: 0;
   height: 1px;
   background: linear-gradient(to right, var(--border-hi) 0%, transparent 100%);
+}
+
+@media (max-width: 600px) {
+  .section-divider {
+    gap: 0.75rem;
+  }
+
+  .section-divider-rule {
+    width: 100%;
+  }
 }
