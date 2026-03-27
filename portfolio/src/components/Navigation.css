@@ -239,25 +239,44 @@
   border-color: var(--amber);
 }
 
+/* ── Hamburger (hidden on desktop) ──────── */
+
+.nav-top-row {
+  display: contents; /* transparent on desktop — children flow normally */
+}
+
+.nav-hamburger {
+  display: none;
+}
+
 /* ── Responsive ───────────────────────────── */
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   .navigation {
     width: 100%;
+    max-width: 100%;
     min-height: unset;
     height: auto;
     border-right: none;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
+    z-index: 1000;
   }
 
   .nav-container {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 0;
+    gap: 0;
+  }
+
+  .nav-top-row {
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    justify-content: space-between;
+    padding: 0.85rem 1.5rem;
     gap: 1rem;
   }
 
@@ -278,19 +297,51 @@
     font-size: var(--fs-lg);
   }
 
-  .nav-menu {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .nav-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 1.25rem;
+    line-height: 1;
+    padding: 0.35rem 0.5rem;
+    cursor: pointer;
+    transition: color 0.15s ease;
   }
 
-  .nav-item:first-child .nav-link-row,
+  .nav-hamburger:hover {
+    color: var(--text);
+  }
+
+  /* Menu hidden by default on mobile */
+  .nav-menu {
+    display: none;
+  }
+
+  /* Menu visible when nav has .is-open */
+  .navigation.is-open .nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    border-top: 1px solid var(--border);
+    padding: 0.5rem 1.5rem 1rem;
+    background: var(--surface);
+  }
+
+  .nav-item:first-child .nav-link-row {
+    border-top: none;
+  }
+
   .nav-link-row {
-    border: none;
+    border-bottom: 1px solid var(--border);
   }
 
   .nav-link {
-    padding: 0.4rem 0.75rem;
+    padding: 0.7rem 0;
+    min-height: 44px;
   }
 
   .nav-expand {
@@ -303,13 +354,7 @@
 
   .nav-submenu {
     width: 100%;
-    padding: 0 0 0.4rem 0.75rem;
+    padding: 0.25rem 0 0.5rem 1rem;
     border-bottom: none;
-  }
-}
-
-@media (max-width: 860px) {
-  .app {
-    flex-direction: column;
   }
 }

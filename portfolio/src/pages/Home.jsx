@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import CvLink from '../components/CvLink';
 import './Home.css';
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
           alt="Headshot of Nicholas W. Lundgren"
         />
         <div className="hero-identity">
-          <p className="hero-eyebrow">Computational Physics Engineer · PhD Candidate</p>
+          <p className="hero-eyebrow"> Computational Chemical Physicist · PhD Candidate</p>
           <h1 className="hero-title">Nicholas<br />W. Lundgren</h1>
         </div>
       </div>
@@ -21,20 +22,18 @@ const Home = () => {
       {/* ── Description + CTAs ────────────────── */}
       <div className="hero-body">
         <p className="hero-description">
-          Building HPC simulation pipelines and ML-driven material models.
-          Five years of Python development, scientific data analysis, and
-          open-source contributions in computational physics.
+          Building HPC simulation pipelines and ML potentials to investigate material transport properties. Five years of Python development, 
+          scientific data analysis, and open-source contributions in computational physics. Specializing in low-symmetry conditions like glasses and 2D materials.
         </p>
         <div className="hero-ctas">
-          <a
-            href="/Nicholas_Lundgren_CV.pdf"
-            download
-            className="hero-cta-btn hero-cta-primary"
-          >
+          <CvLink className="hero-cta-btn hero-cta-primary">
             ↓ Download CV
-          </a>
+          </CvLink>
           <Link to="/skills" className="hero-cta-btn hero-cta-secondary">
             View Skills →
+          </Link>
+          <Link to="/projects" className="hero-cta-btn hero-cta-secondary">
+            View Projects →
           </Link>
         </div>
       </div>
@@ -47,11 +46,11 @@ const Home = () => {
         </div>
         <div className="highlight-item">
           <strong>Specialty</strong>
-          <span>Thermal Simulation & HPC</span>
+          <span>Thermal Transport</span>
         </div>
         <div className="highlight-item">
           <strong>Open Source</strong>
-          <span><span className="kappa">κ</span>ALDo Developer</span>
+          <span>Python Developer</span>
         </div>
       </div>
 
@@ -68,17 +67,22 @@ const Home = () => {
         </div>
         <span className="stat-sep">·</span>
         <div className="stat-item">
-          <span className="stat-num">h2</span>
-          <span className="stat-label">h-index</span>
-        </div>
-        <span className="stat-sep">·</span>
-        <div className="stat-item">
           <span className="stat-num">3</span>
           <span className="stat-label">Publications</span>
         </div>
         <span className="stat-sep">·</span>
         <div className="stat-item">
-          <span className="stat-num">5+</span>
+          <span className="stat-num">6+</span>
+          <span className="stat-label">Years Teaching</span>
+        </div>
+        <span className="stat-sep">·</span>
+        <div className="stat-item">
+          <span className="stat-num">10</span>
+          <span className="stat-label">Courses Taught</span>
+        </div>
+        <span className="stat-sep">·</span>
+        <div className="stat-item">
+          <span className="stat-num">7+</span>
           <span className="stat-label">Years Python</span>
         </div>
       </div>
@@ -104,7 +108,7 @@ const Home = () => {
               <span className="expertise-label">ML & Scientific Computing</span>
             </div>
             <div className="expertise-tags">
-              {['TensorFlow', 'ML Potentials', 'Python', 'ASE', 'NumPy', 'SciPy'].map(t => (
+              {['TensorFlow', 'ML Potentials', 'Python', 'ASE', 'NumPy', 'SciPy', 'Spectroscopy'].map(t => (
                 <span key={t} className="expertise-tag">{t}</span>
               ))}
             </div>
@@ -130,6 +134,17 @@ const Home = () => {
                 <span key={t} className="expertise-tag">
                   {t === 'κALDo' ? <><span className="kappa">κ</span>ALDo</> : t}
                 </span>
+              ))}
+            </div>
+          </div>
+          <div className="expertise-card">
+            <div className="expertise-card-header">
+              <span className="expertise-icon">◌</span>
+              <span className="expertise-label">Teaching & Mentorship</span>
+            </div>
+            <div className="expertise-tags">
+              {['General Chemistry', 'Organic Chemistry', 'Spectroscopy', 'Discussion Sections', 'Course Materials', 'Student Support'].map(t => (
+                <span key={t} className="expertise-tag">{t}</span>
               ))}
             </div>
           </div>
