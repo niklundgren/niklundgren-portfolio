@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import CvLink from './CvLink';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -160,9 +161,9 @@ const Navigation = () => {
           ))}
         </div>
 
-        <a href="/Nicholas_Lundgren_CV.pdf" download className="nav-cv-btn">
+        <CvLink className="nav-cv-btn">
           ↓ Download CV
-        </a>
+        </CvLink>
       </div>
     </nav>
   );

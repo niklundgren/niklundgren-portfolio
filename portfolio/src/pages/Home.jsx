@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import CvLink from '../components/CvLink';
 import './Home.css';
 
 const Home = () => {
@@ -25,13 +26,9 @@ const Home = () => {
           scientific data analysis, and open-source contributions in computational physics. Specializing in low-symmetry conditions like glasses and 2D materials.
         </p>
         <div className="hero-ctas">
-          <a
-            href="/Nicholas_Lundgren_CV.pdf"
-            download
-            className="hero-cta-btn hero-cta-primary"
-          >
+          <CvLink className="hero-cta-btn hero-cta-primary">
             ↓ Download CV
-          </a>
+          </CvLink>
           <Link to="/skills" className="hero-cta-btn hero-cta-secondary">
             View Skills →
           </Link>
