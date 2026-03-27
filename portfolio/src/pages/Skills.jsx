@@ -3,6 +3,7 @@ import katex from 'katex';
 import 'katex/dist/katex.min.css';
 import './Skills.css';
 import SectionDivider from '../components/SectionDivider';
+import CloseButton from '../components/CloseButton';
 
 /* ── Static data ──────────────────────────────── */
 
@@ -304,7 +305,7 @@ const WritingPanel = ({ section, onClose }) => {
             <h2 className="writing-panel-title">{section.title}</h2>
             <p className="writing-panel-subtitle">{section.subtitle}</p>
           </div>
-          <button className="writing-panel-close" onClick={onClose} aria-label="Close panel">&#x2715;</button>
+          <CloseButton className="writing-panel-close" onClick={onClose} aria-label="Close panel" />
         </div>
         <div className="writing-panel-body">
           {section.content.map((block, i) => (
@@ -364,9 +365,7 @@ const FigureLightbox = ({ figure, onClose }) => {
     <>
       <div className="skills-lightbox-backdrop" onClick={onClose} />
       <div className="skills-lightbox" role="dialog" aria-modal="true" aria-label={figure.label}>
-        <button type="button" className="skills-lightbox-close" onClick={onClose} aria-label="Close figure">
-          &#x2715;
-        </button>
+        <CloseButton className="skills-lightbox-close" onClick={onClose} aria-label="Close figure" />
         <div className="skills-lightbox-stage">
           <img src={figure.src} alt={figure.label} className="skills-lightbox-image" />
         </div>

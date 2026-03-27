@@ -82,10 +82,12 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 0.6em 1.1em;
+  min-height: 44px;
   border-radius: 3px;
   text-decoration: none;
   transition: all 0.18s ease;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 }
 
 .hero-cta-primary {
@@ -326,5 +328,23 @@
 
   .stats-bar {
     gap: 0.5rem 1.25rem;
+  }
+
+  .hero-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .highlight-item {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1.5rem;
+  }
+
+  .highlight-item:last-child {
+    border-bottom: none;
+  }
+
+  .hero-title {
+    font-size: 2rem;
   }
 }

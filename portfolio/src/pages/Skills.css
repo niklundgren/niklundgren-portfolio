@@ -265,7 +265,6 @@
   right: 1rem;
   z-index: 1;
   background: rgba(255, 255, 255, 0.92);
-  border-color: var(--border-hi);
 }
 
 .skills-lightbox-stage {
@@ -485,23 +484,9 @@
 }
 
 .writing-panel-close {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-  font-family: var(--mono);
-  font-size: var(--fs-xl);
-  padding: 0.4em 0.7em;
-  cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
   flex-shrink: 0;
   margin-left: 1.5rem;
   margin-top: 0.2rem;
-  border-radius: 3px;
-}
-
-.writing-panel-close:hover {
-  border-color: var(--amber);
-  color: var(--text);
 }
 
 .writing-panel-body {
@@ -692,16 +677,27 @@
     width: 92%;
   }
 
-  .writing-panel-header,
+  .writing-panel-header {
+    padding: 1.75rem 1.75rem 1.25rem;
+  }
+
   .writing-panel-body {
-    padding-left: 1.75rem;
-    padding-right: 1.75rem;
+    padding: 1.5rem 1.75rem 2rem;
   }
 }
 
 @media (max-width: 600px) {
   .skills-title {
     font-size: var(--fs-2xl);
+  }
+
+  .skills-section-intro {
+    margin-left: 0;
+  }
+
+  .essay-pullquote {
+    margin-left: 0;
+    padding-left: 1.25rem;
   }
 
   .skills-figure-grid {

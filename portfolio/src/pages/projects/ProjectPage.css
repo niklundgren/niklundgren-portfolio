@@ -6,6 +6,21 @@
   color: var(--text);
 }
 
+@media (max-width: 860px) {
+  .project-page {
+    padding: 2.5rem 1.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-page {
+    padding: 2rem 1.25rem;
+  }
+  .project-title {
+    font-size: 2.2rem;
+  }
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;

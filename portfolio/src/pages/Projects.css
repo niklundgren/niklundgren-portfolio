@@ -378,6 +378,12 @@
 
 /* ── Responsive ───────────────────────────── */
 
+@media (max-width: 860px) {
+  .projects-page {
+    padding: 3.5rem 2.25rem;
+  }
+}
+
 @media (max-width: 600px) {
   .projects-page {
     padding: 3rem 1.5rem;
@@ -395,5 +401,12 @@
   .academic-title-row {
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  .coding-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 }
