@@ -71,7 +71,18 @@ const Navigation = () => {
   };
 
   const toggleMenu = (key) => {
-    setOpenMenus((current) => ({ ...current, [key]: !current[key] }));
+    setOpenMenus((current) => {
+      const nextIsOpen = !current[key];
+
+      if (key === 'projects' && nextIsOpen) {
+        setOpenSubMenus((subMenus) => ({
+          ...subMenus,
+          'other-projects': true,
+        }));
+      }
+
+      return { ...current, [key]: nextIsOpen };
+    });
   };
 
   const toggleSubMenu = (key) => {
