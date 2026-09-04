@@ -14,6 +14,7 @@ import json
 import sys
 import time
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qs, urlparse
 
@@ -26,6 +27,9 @@ USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) "
     "Chrome/123.0.0.0 Safari/537.36"
+)
+DEFAULT_SCHOLAR_JSON_PATH = (
+    Path(__file__).resolve().parent.parent / "portfolio" / "src" / "data" / "scholar.json"
 )
 
 
@@ -79,6 +83,19 @@ def parse_args() -> argparse.Namespace:
         "--pretty",
         action="store_true",
         help="Pretty-print JSON output.",
+    )
+    parser.add_argument(
+        "--update-scholar-json",
+        nargs="?",
+        const=str(DEFAULT_SCHOLAR_JSON_PATH),
+        default=None,
+        metavar="PATH",
+        help=(
+            "Write scraped publications (title, link, citation count, year) to "
+            "this scholar.json file, in the schema the portfolio's Projects page "
+            f"reads from. Defaults to {DEFAULT_SCHOLAR_JSON_PATH} when passed "
+            "without a path."
+        ),
     )
     return parser.parse_args()
 
@@ -271,6 +288,30 @@ def scrape_profile(args: argparse.Namespace) -> dict[str, Any]:
     }
 
 
+def build_scholar_json(result: dict[str, Any]) -> dict[str, Any]:
+    """Trim a scrape result down to the schema the Projects page consumes."""
+    publications = [
+        {
+            "title": pub["title"],
+            "link": pub["link"],
+            "cited_by": pub["cited_by"],
+            "year": pub["year"],
+        }
+        for pub in result["publications"]
+    ]
+    return {
+        "user_id": result["user_id"],
+        "publication_count": len(publications),
+        "publications": publications,
+    }
+
+
+def write_scholar_json(result: dict[str, Any], path: Path) -> None:
+    data = build_scholar_json(result)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+
+
 def main() -> int:
     args = parse_args()
     try:
@@ -287,6 +328,12 @@ def main() -> int:
 
     indent = 2 if args.pretty else None
     print(json.dumps(result, indent=indent, ensure_ascii=True))
+
+    if args.update_scholar_json:
+        target = Path(args.update_scholar_json)
+        write_scholar_json(result, target)
+        print(f"Updated {target}", file=sys.stderr)
+
     return 0
 
 
