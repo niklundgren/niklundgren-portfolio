@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import katex from 'katex';
-import 'katex/dist/katex.min.css';
+import { renderInline, renderKaTeX } from '../utils/inlineRender';
 import './Skills.css';
 import SectionDivider from '../components/SectionDivider';
 import CloseButton from '../components/CloseButton';
@@ -201,29 +200,7 @@ const WRITING_SECTIONS = [
 
 /* ── Helpers ──────────────────────────────────── */
 
-function renderKaTeX(latex, displayMode = false) {
-  return katex.renderToString(latex, { displayMode, throwOnError: false, output: 'html' });
-}
-
 /* ── Sub-components ───────────────────────────── */
-
-function renderInline(text) {
-  const parts = text.split(/(\$[^$]+\$|\[\d+(?:,\d+)*\])/g);
-  return parts.map((part, i) => {
-    if (part.startsWith('$') && part.endsWith('$')) {
-      return (
-        <span
-          key={i}
-          dangerouslySetInnerHTML={{ __html: renderKaTeX(part.slice(1, -1), false) }}
-        />
-      );
-    }
-    if (/^\[\d/.test(part)) {
-      return <sup key={i} className="panel-cite">{part}</sup>;
-    }
-    return part;
-  });
-}
 
 const InlineParagraph = ({ text }) => (
   <p className="panel-para">{renderInline(text)}</p>
@@ -509,9 +486,9 @@ const Skills = () => {
         </div>
       </section>
 
-      {/* \u2500\u2500 \u00a7 02 Data Visualization \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */}
+      {/* \u2500\u2500 \u00a7 02 Data Analysis + Visualization \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 */}
       <section className="skills-section" id="visualization">
-        <SectionDivider num="02" title="Data Visualization" />
+        <SectionDivider num="02" title="Data Analysis + Visualization" />
         <p className="skills-section-intro">
           Research figures from published and in-progress work on lattice dynamics,
           thermal transport, and machine learning interatomic potentials. Open any

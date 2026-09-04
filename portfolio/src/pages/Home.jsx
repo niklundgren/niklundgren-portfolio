@@ -22,8 +22,8 @@ const Home = () => {
       {/* ── Description + CTAs ────────────────── */}
       <div className="hero-body">
         <p className="hero-description">
-          Building HPC simulation pipelines and ML potentials to investigate material transport properties. Five years of Python development, 
-          scientific data analysis, and open-source contributions in computational physics. Specializing in low-symmetry conditions like glasses and 2D materials.
+          Five years of Python development, scientific data analysis, and open-source code contributions in computational physics. Specializing in thermal transport for low-symmetry materials like glasses and 2D components.
+          Building HPC simulation pipelines, training ML potentials, and analyzing phonon dynamics to investigate transport properties. 
         </p>
         <div className="hero-ctas">
           <CvLink className="hero-cta-btn hero-cta-primary">
@@ -42,7 +42,7 @@ const Home = () => {
       <div className="hero-highlights">
         <div className="highlight-item">
           <strong>Expected PhD</strong>
-          <span>June 2026 · UC Davis</span>
+          <span>December 2026 · UC Davis</span>
         </div>
         <div className="highlight-item">
           <strong>Specialty</strong>
@@ -97,7 +97,7 @@ const Home = () => {
               <span className="expertise-label">HPC & Simulation</span>
             </div>
             <div className="expertise-tags">
-              {['LAMMPS', 'GPUMD', 'DLPOLY', 'Kokkos', 'Fortran', 'MPI'].map(t => (
+              {['LAMMPS', 'GPUMD', 'DLPOLY', 'Kokkos', 'Fortran', 'MPI', 'SLURM'].map(t => (
                 <span key={t} className="expertise-tag">{t}</span>
               ))}
             </div>
@@ -108,7 +108,7 @@ const Home = () => {
               <span className="expertise-label">ML & Scientific Computing</span>
             </div>
             <div className="expertise-tags">
-              {['TensorFlow', 'ML Potentials', 'Python', 'ASE', 'NumPy', 'SciPy', 'Spectroscopy'].map(t => (
+              {['TensorFlow', 'NumPy', 'SciPy'].map(t => (
                 <span key={t} className="expertise-tag">{t}</span>
               ))}
             </div>
@@ -119,7 +119,7 @@ const Home = () => {
               <span className="expertise-label">Data Analysis & Viz</span>
             </div>
             <div className="expertise-tags">
-              {['Python', 'matplotlib', 'Pandas', 'Inkscape', 'GPTA', 'VMD'].map(t => (
+              {['matplotlib', 'Pandas', 'Inkscape', 'GPTA3', 'VMD'].map(t => (
                 <span key={t} className="expertise-tag">{t}</span>
               ))}
             </div>
@@ -130,7 +130,7 @@ const Home = () => {
               <span className="expertise-label">Software Development</span>
             </div>
             <div className="expertise-tags">
-              {['κALDo', 'Git', 'Python', 'JavaScript', 'HTML/CSS', 'LaTeX'].map(t => (
+              {['Git', 'Python', 'Fortran', 'HTML/CSS', 'LaTeX'].map(t => (
                 <span key={t} className="expertise-tag">
                   {t === 'κALDo' ? <><span className="kappa">κ</span>ALDo</> : t}
                 </span>
@@ -143,7 +143,7 @@ const Home = () => {
               <span className="expertise-label">Teaching & Mentorship</span>
             </div>
             <div className="expertise-tags">
-              {['General Chemistry', 'Organic Chemistry', 'Spectroscopy', 'Discussion Sections', 'Course Materials', 'Student Support'].map(t => (
+              {['General Chemistry', 'Organic Chemistry', 'Spectroscopy', 'Quantum Chemistry', 'Gen. Chem. Labs'].map(t => (
                 <span key={t} className="expertise-tag">{t}</span>
               ))}
             </div>
