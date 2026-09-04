@@ -14,9 +14,9 @@ const Navigation = () => {
       label: 'Skills',
       key: 'skills',
       children: [
-        { to: '/skills#software', label: 'Software' },
-        { to: '/skills#writing', label: 'Technical Writing' },
         { to: '/skills#visualization', label: 'Data Visualization' },
+        { to: '/skills#writing', label: 'Technical Writing' },
+        { to: '/skills#software', label: 'Software' },
       ],
     },
     {
